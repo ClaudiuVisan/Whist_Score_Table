@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Whist Score Table</string>
+    <string name="titlu">WHIST SCORE TABLE</string>
+    <string name="new_game">START GAME</string>
+    <string name="noPlayers">SELECT NUMBER OF PLAYERS</string>
+    <string name="load_game">LOAD GAME</string>
+    <string name="spinPlayers">PLAYERS</string>
+    <string-array name="spinNoPlayers">
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
 </resources>
