@@ -2,6 +2,7 @@ package com.example.whistscoretable;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,10 +13,11 @@ public class add_players extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_add_players);
+        Intent intent = getIntent();
+        int noPlayers=intent.getIntExtra("noPlayers",3);
         int i;
-        for(i=1;i<=3;i++)
+        for(i=1;i<=noPlayers;i++)
         {
             myLayout=(LinearLayout) findViewById(R.id.myLayout);
             LinearLayout.LayoutParams myParams = new LinearLayout.LayoutParams(
