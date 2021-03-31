@@ -3,6 +3,7 @@ package com.example.whistscoretable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
@@ -16,9 +17,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (savedInstanceState != null) {  // nu cred ca e necesar aici
+       /* if (savedInstanceState != null) {  // nu cred ca e necesar aici
             noPlayers = savedInstanceState.getInt("noPlayers");
-        }
+        }*/
     }
     public void onRadioButtonClicked(View view){
         boolean checked=((RadioButton) view).isChecked();
@@ -41,15 +42,16 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-    @Override
+   /* @Override
     public void onSaveInstanceState(Bundle savedInstanceState){
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putInt("noPlayers",noPlayers);
-    }
+    }*/
     public void onClickNewGame(View view){
-        /*Intent intent = new Intent(this,add_players.class)
+        Intent intent = new Intent(this,add_players.class);
+        intent.putExtra("noPlayers",noPlayers);
         startActivity(intent);
-         */
+
     }
     public void onClickLoadGame(View view){
         // Implementare activity load game
