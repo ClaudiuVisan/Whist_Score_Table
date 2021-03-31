@@ -11,7 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 public class add_players extends AppCompatActivity {
-    private int noPlayers;
+    private int noPlayers,nr;
+    private boolean modif=false;
     LinearLayout myLayout=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,14 @@ public class add_players extends AppCompatActivity {
     }
 
     public void addPlayers(){
+        if(modif)
+        {
+            for(int i=1;i<=6;i++)
+            {
+                EditText caset = (EditText) findViewById(i+100);
+                myLayout.removeView(caset);
+            }
+        }
         int i;
         for(i=1;i<=noPlayers;i++)
         {
@@ -40,10 +49,10 @@ public class add_players extends AppCompatActivity {
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
             EditText caseta = new EditText(add_players.this);
-            caseta.setText("Player "+i);
-            caseta.setId(i);
+            caseta.setHint("Player "+i);
+            caseta.setId(i+100);
             myLayout.addView(caseta, myParams);
         }
-
+        modif=true;
     }
 }
