@@ -47,7 +47,7 @@ public class add_players extends AppCompatActivity {
                     playerList.add(newPlayer);
                     n++;
                 }
-                Intent intent2 = new Intent(this, Scores.class);
+                Intent intent2 = new Intent(add_players.this, Score.class);
                 intent2.putExtra("playerList", playerList);
             }
         });
