@@ -50,6 +50,7 @@ public class add_players extends AppCompatActivity {
             );
             EditText caseta = new EditText(add_players.this);
             caseta.setHint("Player "+i);
+            caseta.setSingleLine(true);
             caseta.setId(i+100);
             myLayout.addView(caseta, myParams);
         }
