@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onClickNewGame(View view){
-        Intent intent = new Intent(this,add_players.class);
-        startActivity(intent);
+        Intent intent1 = new Intent(this,add_players.class);
+        startActivity(intent1);
 
     }
     public void onClickLoadGame(View view){

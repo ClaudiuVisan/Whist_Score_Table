@@ -32,5 +32,6 @@
         android:layout_height="wrap_content"
         android:text="PLACE HOLDER"
         android:layout_gravity="center" />
+    
 
 </LinearLayout>
