@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -32,15 +32,17 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.129" />
+        app:layout_constraintVertical_bias="0.192" />
 
     <Button
         android:id="@+id/new_game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="152dp"
+        android:onClick="onClickNewGame"
         android:text="@string/new_game"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,60 +50,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titlu"
-        app:layout_constraintVertical_bias="0.917"
-        android:onClick="onClickNewGame"/>
-
-    <TextView
-        android:id="@+id/noPlayers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="140dp"
-        android:text="@string/noPlayers"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/new_game"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titlu"
-        app:layout_constraintVertical_bias="0.215" />
-
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/new_game"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noPlayers">
-
-        <RadioButton
-            android:id="@+id/Players_3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="3 Players"
-            android:onClick="onRadioButtonClicked"/>
-
-        <RadioButton
-            android:id="@+id/Players_4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="4 Players"
-            android:onClick="onRadioButtonClicked"/>
-
-        <RadioButton
-            android:id="@+id/Players_5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="5 Players"
-            android:onClick="onRadioButtonClicked"/>
-
-        <RadioButton
-            android:id="@+id/Players_6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="6 Players"
-            android:onClick="onRadioButtonClicked"/>
-    </RadioGroup>
+        app:layout_constraintVertical_bias="0.718" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
