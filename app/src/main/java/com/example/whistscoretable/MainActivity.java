@@ -1,13 +1,10 @@
 package com.example.whistscoretable;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.RadioButton;
-import java.util.Locale;
+
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,16 +1,13 @@
 package com.example.whistscoretable;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-
 import java.util.ArrayList;
 
 public class add_players extends AppCompatActivity {
@@ -35,22 +32,11 @@ public class add_players extends AppCompatActivity {
                 addPlayers();
             }
         });
+    }
+    public void onClickStartGame(View view){
+        Intent start = new Intent(add_players.this,Score.class);
+        startActivity(start);
 
-        start_game.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(int i=1;i<=noPlayers;i++)
-                {
-                    Player newPlayer = new Player();
-                    EditText caset = (EditText) findViewById(i+100);
-                    newPlayer.setName(caset.getText().toString());
-                    playerList.add(newPlayer);
-                    n++;
-                }
-                Intent intent2 = new Intent(this, Scores.class);
-                intent2.putExtra("playerList", playerList);
-            }
-        });
     }
 
     public void addPlayers(){
@@ -61,8 +47,6 @@ public class add_players extends AppCompatActivity {
                 EditText caset = (EditText) findViewById(i+100);
                 myLayout.removeView(caset);
             }
-            Button butonski= (Button) findViewById(150);
-            myLayout.removeView(butonski);
         }
         int i;
         for(i=1;i<=noPlayers;i++)
@@ -79,15 +63,5 @@ public class add_players extends AppCompatActivity {
             myLayout.addView(caseta, myParams);
         }
         modif=true;
-        start_game = new Button(add_players.this);
-        myLayout=(LinearLayout) findViewById(R.id.myLayout);
-        LinearLayout.LayoutParams myParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        start_game.setText("START GAME");
-        start_game.setId(150);
-        //start_game.setGravity(Gravity.CENTER_HORIZONTAL);
-        myLayout.addView(start_game, myParams);
     }
 }
