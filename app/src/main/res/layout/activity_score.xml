@@ -31,6 +31,20 @@
         app:layout_constraintVertical_bias="1.0">
 
         <TextView
+            android:id="@+id/p3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/p2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+        <TextView
             android:id="@+id/p"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

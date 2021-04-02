@@ -8,12 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class add_players extends AppCompatActivity {
     private int noPlayers,n=0;
     private boolean modif=false;
-    private ArrayList<Player> playerList = new ArrayList<Player>();
+    private ArrayList<Player> playerList = new ArrayList<>();
     private Button start_game;
     LinearLayout myLayout=null;
     @Override
@@ -43,9 +44,10 @@ public class add_players extends AppCompatActivity {
             newPlayer.setName(caset.getText().toString());
             playerList.add(newPlayer);
             n++;
-            passPlayers.putSerializable("playerList",newPlayer);
+            passPlayers.putSerializable("playerList",(Serializable) playerList);
         }
         start.putExtras(passPlayers);
+        start.putExtra("noPlayers",noPlayers);
       //  start.putExtra("playerList", playerList);
         startActivity(start);
     }
