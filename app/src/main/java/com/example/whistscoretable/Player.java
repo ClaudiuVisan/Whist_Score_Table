@@ -1,6 +1,8 @@
 package com.example.whistscoretable;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
     private int score=0, bet, result;
     private String name;
 
@@ -35,4 +37,5 @@ public class Player {
     public void setName(String name) {
         this.name = name;
     }
+
 }

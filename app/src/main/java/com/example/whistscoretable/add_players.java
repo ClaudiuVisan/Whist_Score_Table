@@ -35,8 +35,19 @@ public class add_players extends AppCompatActivity {
     }
     public void onClickStartGame(View view){
         Intent start = new Intent(add_players.this,Score.class);
+        Bundle passPlayers=new Bundle();
+        for(int i=1;i<=noPlayers;i++)
+        {
+            Player newPlayer = new Player();
+            EditText caset = (EditText) findViewById(i+100);
+            newPlayer.setName(caset.getText().toString());
+            playerList.add(newPlayer);
+            n++;
+            passPlayers.putSerializable("playerList",newPlayer);
+        }
+        start.putExtras(passPlayers);
+      //  start.putExtra("playerList", playerList);
         startActivity(start);
-
     }
 
     public void addPlayers(){
