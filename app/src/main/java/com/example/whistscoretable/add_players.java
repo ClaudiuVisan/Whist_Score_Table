@@ -40,7 +40,7 @@ public class add_players extends AppCompatActivity {
         for(int i=1;i<=noPlayers;i++)
         {
             Player newPlayer = new Player();
-            EditText caset = (EditText) findViewById(i+100);
+            EditText caset = (EditText) findViewById(i+R.id.playerName);
             newPlayer.setName(caset.getText().toString());
             playerList.add(newPlayer);
             n++;
@@ -57,7 +57,7 @@ public class add_players extends AppCompatActivity {
         {
             for(int i=1;i<=6;i++)
             {
-                EditText caset = (EditText) findViewById(i+100);
+                EditText caset = (EditText) findViewById(i+R.id.playerName);
                 myLayout.removeView(caset);
             }
         }
@@ -72,7 +72,7 @@ public class add_players extends AppCompatActivity {
             EditText caseta = new EditText(add_players.this);
             caseta.setHint("Player "+i);
             caseta.setSingleLine(true);
-            caseta.setId(i+100);
+            caseta.setId(i+R.id.playerName);
             myLayout.addView(caseta, myParams);
         }
         modif=true;
