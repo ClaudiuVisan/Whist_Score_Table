@@ -1,23 +1,20 @@
 package com.example.whistscoretable;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class add_players extends AppCompatActivity {
-    private int noPlayers,n=0;
+    private int noPlayers;
     private boolean modif=false;
-    private ArrayList<Player> playerList = new ArrayList<Player>();
-    private Button start_game;
+    private ArrayList<Player> playerList = new ArrayList<>();
     LinearLayout myLayout=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,31 +23,35 @@ public class add_players extends AppCompatActivity {
         Intent intent1 = getIntent();
         Button placeHolder=(Button) findViewById(R.id.placeHolder);
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
-
+        Button start_game=(Button) findViewById(R.id.start_game);
+        start_game.setEnabled(false);
         placeHolder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String noPlayersstr=String.valueOf(spinner.getSelectedItem()) ;
                 noPlayers=Integer.parseInt(noPlayersstr);
                 addPlayers();
-            }
-        });
+                start_game.setEnabled(true);
 
-        start_game.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(int i=1;i<=noPlayers;i++)
-                {
-                    Player newPlayer = new Player();
-                    EditText caset = (EditText) findViewById(i+100);
-                    newPlayer.setName(caset.getText().toString());
-                    playerList.add(newPlayer);
-                    n++;
-                }
-                Intent intent2 = new Intent(add_players.this, Score.class);
-                intent2.putExtra("playerList", playerList);
             }
         });
+    }
+
+    public void onClickStartGame(View view){
+        Intent start = new Intent(add_players.this,Score.class);
+        Bundle passPlayers=new Bundle();
+        for(int i=1;i<=noPlayers;i++)
+        {
+            Player newPlayer = new Player();
+            EditText caset = (EditText) findViewById(i+R.id.playerName);
+            newPlayer.setName(caset.getText().toString());
+            playerList.add(newPlayer);
+            passPlayers.putSerializable("playerList",(Serializable) playerList);
+        }
+        start.putExtras(passPlayers);
+        start.putExtra("noPlayers",noPlayers);
+        startActivity(start);
+
     }
 
     public void addPlayers(){
@@ -58,11 +59,9 @@ public class add_players extends AppCompatActivity {
         {
             for(int i=1;i<=6;i++)
             {
-                EditText caset = (EditText) findViewById(i+100);
+                EditText caset = (EditText) findViewById(i+R.id.playerName);
                 myLayout.removeView(caset);
             }
-            Button butonski= (Button) findViewById(150);
-            myLayout.removeView(butonski);
         }
         int i;
         for(i=1;i<=noPlayers;i++)
@@ -75,19 +74,9 @@ public class add_players extends AppCompatActivity {
             EditText caseta = new EditText(add_players.this);
             caseta.setHint("Player "+i);
             caseta.setSingleLine(true);
-            caseta.setId(i+100);
+            caseta.setId(i+R.id.playerName);
             myLayout.addView(caseta, myParams);
         }
         modif=true;
-        start_game = new Button(add_players.this);
-        myLayout=(LinearLayout) findViewById(R.id.myLayout);
-        LinearLayout.LayoutParams myParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        start_game.setText("START GAME");
-        start_game.setId(150);
-        //start_game.setGravity(Gravity.CENTER_HORIZONTAL);
-        myLayout.addView(start_game, myParams);
     }
 }
