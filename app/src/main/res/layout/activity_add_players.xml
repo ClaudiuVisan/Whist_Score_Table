@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/myLayout"
-    tools:context=".add_players">
+    tools:context=".addPlayersActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,7 +60,7 @@
             android:id="@+id/startGame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="START GAME"
+            android:text="@string/startGame"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"

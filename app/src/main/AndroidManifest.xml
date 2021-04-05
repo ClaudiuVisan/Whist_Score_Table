@@ -9,11 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WhistScoreTable">
-        <activity android:name=".Score"
+        <activity android:name=".scoreTableActivity"
             android:screenOrientation="portrait"
             ></activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".menuActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".add_players"
+            android:name=".addPlayersActivity"
             android:screenOrientation="portrait"
             ></activity>
     </application>

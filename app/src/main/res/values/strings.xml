@@ -5,6 +5,7 @@
     <string name="noPlayers">SELECT NUMBER OF PLAYERS</string>
     <string name="loadGame">LOAD GAME</string>
     <string name="spinPlayers">PLAYERS</string>
+    <string name="startGame">START GAME</string>
     <string-array name="spinNoPlayers">
         <item>3</item>
         <item>4</item>
