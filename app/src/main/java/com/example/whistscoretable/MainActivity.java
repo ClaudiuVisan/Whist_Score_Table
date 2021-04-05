@@ -22,5 +22,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onClickLoadGame(View view){
         // Implementare activity load game
+        // TO DO
     }
 }
+

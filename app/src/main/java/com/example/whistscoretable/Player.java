@@ -3,7 +3,7 @@ package com.example.whistscoretable;
 import java.io.Serializable;
 
 public class Player implements Serializable {
-    private int score=0, bet, result;
+    private int score, bet, result;
     private String name;
 
     public int getScore() {
@@ -36,6 +36,12 @@ public class Player implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    Player(){
+        score=0;
+        name=" ";
+        bet=0;
     }
 
 }

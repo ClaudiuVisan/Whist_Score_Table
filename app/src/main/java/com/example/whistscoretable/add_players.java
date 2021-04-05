@@ -12,10 +12,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class add_players extends AppCompatActivity {
-    private int noPlayers,n=0;
+    private int noPlayers;
     private boolean modif=false;
     private ArrayList<Player> playerList = new ArrayList<>();
-    private Button start_game;
     LinearLayout myLayout=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,16 +23,20 @@ public class add_players extends AppCompatActivity {
         Intent intent1 = getIntent();
         Button placeHolder=(Button) findViewById(R.id.placeHolder);
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
-
+        Button start_game=(Button) findViewById(R.id.start_game);
+        start_game.setEnabled(false);
         placeHolder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String noPlayersstr=String.valueOf(spinner.getSelectedItem()) ;
                 noPlayers=Integer.parseInt(noPlayersstr);
                 addPlayers();
+                start_game.setEnabled(true);
+
             }
         });
     }
+
     public void onClickStartGame(View view){
         Intent start = new Intent(add_players.this,Score.class);
         Bundle passPlayers=new Bundle();
@@ -43,13 +46,12 @@ public class add_players extends AppCompatActivity {
             EditText caset = (EditText) findViewById(i+R.id.playerName);
             newPlayer.setName(caset.getText().toString());
             playerList.add(newPlayer);
-            n++;
             passPlayers.putSerializable("playerList",(Serializable) playerList);
         }
         start.putExtras(passPlayers);
         start.putExtra("noPlayers",noPlayers);
-      //  start.putExtra("playerList", playerList);
         startActivity(start);
+
     }
 
     public void addPlayers(){
