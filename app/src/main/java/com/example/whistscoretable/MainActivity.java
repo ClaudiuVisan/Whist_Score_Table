@@ -14,12 +14,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-
     public void onClickNewGame(View view){
-        Intent intent1 = new Intent(this,add_players.class);
-        startActivity(intent1);
-
+        Intent newGame = new Intent(this,add_players.class);
+        startActivity(newGame);
     }
+
     public void onClickLoadGame(View view){
         // Implementare activity load game
         // TO DO

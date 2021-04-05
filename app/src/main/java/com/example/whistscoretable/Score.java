@@ -18,11 +18,11 @@ public class Score extends AppCompatActivity {
         setContentView(R.layout.activity_score);
         ArrayList<Player> playersList = (ArrayList<Player>) getIntent().getSerializableExtra("playerList");
         int noPlayers=(getIntent().getIntExtra("noPlayers",2));
+
         TableLayout tabel = (TableLayout) findViewById(R.id.tabel);
         tabel.setColumnStretchable(1, true);
         tabel.setColumnStretchable(2, true);
         tabel.setStretchAllColumns(true);
-
 
         for(int i=1;i<=noPlayers;i++)
         {
@@ -39,7 +39,6 @@ public class Score extends AppCompatActivity {
             rand.addView(casetNume);
             rand.addView(casetScor);
             tabel.addView(rand);
-
         }
     }
 }

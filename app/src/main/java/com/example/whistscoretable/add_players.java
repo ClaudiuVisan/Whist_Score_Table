@@ -12,71 +12,70 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class add_players extends AppCompatActivity {
+
     private int noPlayers;
-    private boolean modif=false;
-    private ArrayList<Player> playerList = new ArrayList<>();
-    LinearLayout myLayout=null;
+    private boolean noPlayersModified = false;
+    private ArrayList<Player> playersList = new ArrayList<>();
+    LinearLayout addPlayersLayout = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_players);
-        Intent intent1 = getIntent();
-        Button placeHolder=(Button) findViewById(R.id.placeHolder);
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        Button start_game=(Button) findViewById(R.id.start_game);
-        start_game.setEnabled(false);
+        Intent newGame = getIntent();
+        Button placeHolder= (Button) findViewById(R.id.placeHolder);
+        Spinner pickNoPlayers = (Spinner) findViewById(R.id.spinner);
+        Button startGame= (Button) findViewById(R.id.startGame);
+        startGame.setEnabled(false);
         placeHolder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String noPlayersstr=String.valueOf(spinner.getSelectedItem()) ;
-                noPlayers=Integer.parseInt(noPlayersstr);
+                String noPlayersstr = String.valueOf(pickNoPlayers.getSelectedItem()) ;
+                noPlayers = Integer.parseInt(noPlayersstr);
                 addPlayers();
-                start_game.setEnabled(true);
-
+                startGame.setEnabled(true);
             }
         });
     }
 
     public void onClickStartGame(View view){
-        Intent start = new Intent(add_players.this,Score.class);
-        Bundle passPlayers=new Bundle();
+        Intent startGame = new Intent(add_players.this,Score.class);
+        Bundle passPlayersList = new Bundle();
         for(int i=1;i<=noPlayers;i++)
         {
             Player newPlayer = new Player();
-            EditText caset = (EditText) findViewById(i+R.id.playerName);
+            EditText caset = (EditText) findViewById(R.id.playerName+i);
             newPlayer.setName(caset.getText().toString());
-            playerList.add(newPlayer);
-            passPlayers.putSerializable("playerList",(Serializable) playerList);
+            playersList.add(newPlayer);
+            passPlayersList.putSerializable("playerList",(Serializable) playersList);
         }
-        start.putExtras(passPlayers);
-        start.putExtra("noPlayers",noPlayers);
-        startActivity(start);
-
+        startGame.putExtras(passPlayersList);
+        startGame.putExtra("noPlayers",noPlayers);
+        startActivity(startGame);
     }
 
     public void addPlayers(){
-        if(modif)
+        if(noPlayersModified)
         {
             for(int i=1;i<=6;i++)
             {
-                EditText caset = (EditText) findViewById(i+R.id.playerName);
-                myLayout.removeView(caset);
+                EditText removePlayerName = (EditText) findViewById(R.id.playerName+i);
+                addPlayersLayout.removeView(removePlayerName);
             }
         }
-        int i;
-        for(i=1;i<=noPlayers;i++)
+        for(int i=1;i<=noPlayers;i++)
         {
-            myLayout=(LinearLayout) findViewById(R.id.myLayout);
+            addPlayersLayout = (LinearLayout) findViewById(R.id.myLayout);
             LinearLayout.LayoutParams myParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
-            EditText caseta = new EditText(add_players.this);
-            caseta.setHint("Player "+i);
-            caseta.setSingleLine(true);
-            caseta.setId(i+R.id.playerName);
-            myLayout.addView(caseta, myParams);
+            EditText playerName = new EditText(add_players.this);
+            playerName.setHint("Player "+i);
+            playerName.setSingleLine(true);
+            playerName.setId(R.id.playerName+i);
+            addPlayersLayout.addView(playerName, myParams);
         }
-        modif=true;
+        noPlayersModified = true;
     }
 }
