@@ -11,7 +11,7 @@ import android.widget.Spinner;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class addPlayersActivity extends AppCompatActivity {
+public class AddPlayersActivity extends AppCompatActivity {
 
     private int noPlayers;
     private boolean noPlayersModified = false;
@@ -39,7 +39,7 @@ public class addPlayersActivity extends AppCompatActivity {
     }
 
     public void onClickStartGame(View view){
-        Intent startGame = new Intent(addPlayersActivity.this, scoreTableActivity.class);
+        Intent startGame = new Intent(AddPlayersActivity.this, ScoreTableActivity.class);
         Bundle passPlayersList = new Bundle();
         for(int i=1;i<=noPlayers;i++)
         {
@@ -70,7 +70,7 @@ public class addPlayersActivity extends AppCompatActivity {
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
-            EditText playerName = new EditText(addPlayersActivity.this);
+            EditText playerName = new EditText(AddPlayersActivity.this);
             playerName.setHint("Player "+i);
             playerName.setSingleLine(true);
             playerName.setId(R.id.playerName+i);
