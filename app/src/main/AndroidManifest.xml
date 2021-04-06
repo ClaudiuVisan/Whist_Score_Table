@@ -11,6 +11,7 @@
         android:theme="@style/Theme.WhistScoreTable">
         <activity android:name=".ScoreTableActivity"
             android:screenOrientation="portrait"
+            android:parentActivityName=".AddPlayersActivity"
             ></activity>
         <activity
             android:name=".MenuActivity"

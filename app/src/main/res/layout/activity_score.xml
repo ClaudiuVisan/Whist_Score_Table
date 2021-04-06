@@ -10,19 +10,18 @@
         android:id="@+id/scoreView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
         android:text="@string/scoreView"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.07" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TableLayout
         android:id="@+id/tabel"
-        android:layout_width="411dp"
-        android:layout_height="552dp"
+        android:layout_width="410dp"
+        android:layout_height="473dp"
         android:layout_marginTop="12dp"
         android:stretchColumns="0,1"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,7 +29,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scoreView"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.41000003">
 
     </TableLayout>
 

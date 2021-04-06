@@ -20,13 +20,14 @@ public class ScoreTableActivity extends AppCompatActivity {
         ArrayList<Player> playersList = (ArrayList<Player>) getIntent().getSerializableExtra("playerList");
         int noPlayers=(getIntent().getIntExtra("noPlayers",2));
         TableLayout tabel = (TableLayout) findViewById(R.id.tabel);
+        tabel.setVerticalGravity(Gravity.CENTER_VERTICAL);
         tabel.setColumnStretchable(0,true);
         tabel.setColumnStretchable(1,true);
 
         for(int i=1;i<=noPlayers;i++)
         {
             TableRow rand = new TableRow(this);
-            TableRow.LayoutParams myParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+            TableRow.LayoutParams myParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.MATCH_PARENT);
             rand.setLayoutParams(myParams);
             TextView casetNume = new TextView(this);
             TextView casetScor = new TextView(this);
