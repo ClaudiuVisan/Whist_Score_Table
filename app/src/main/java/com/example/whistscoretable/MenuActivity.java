@@ -6,20 +6,19 @@ import android.os.Bundle;
 import android.view.View;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_menu);
     }
-
 
     public void onClickNewGame(View view){
-        Intent intent1 = new Intent(this,add_players.class);
-        startActivity(intent1);
-
+        Intent newGame = new Intent(this, AddPlayersActivity.class);
+        startActivity(newGame);
     }
+
     public void onClickLoadGame(View view){
         // Implementare activity load game
         // TO DO

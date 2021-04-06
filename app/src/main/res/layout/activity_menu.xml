@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".MenuActivity"
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/load_game"
+        android:id="@+id/loadGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="9dp"
-        android:text="@string/load_game"
+        android:text="@string/loadGame"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_game"
+        app:layout_constraintTop_toBottomOf="@+id/newGame"
         app:layout_constraintVertical_bias="0.077"
         android:onClick="onClickLoadGame"/>
 
@@ -38,12 +38,12 @@
         app:layout_constraintVertical_bias="0.192" />
 
     <Button
-        android:id="@+id/new_game"
+        android:id="@+id/newGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="152dp"
         android:onClick="onClickNewGame"
-        android:text="@string/new_game"
+        android:text="@string/newGame"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,6 +51,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titlu"
         app:layout_constraintVertical_bias="0.718" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+
