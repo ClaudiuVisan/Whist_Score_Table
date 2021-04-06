@@ -16,13 +16,12 @@ public class ScoreTableActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
+
         ArrayList<Player> playersList = (ArrayList<Player>) getIntent().getSerializableExtra("playerList");
         int noPlayers=(getIntent().getIntExtra("noPlayers",2));
-
         TableLayout tabel = (TableLayout) findViewById(R.id.tabel);
-        tabel.setColumnStretchable(1, true);
-        tabel.setColumnStretchable(2, true);
-        tabel.setStretchAllColumns(true);
+        tabel.setColumnStretchable(0,true);
+        tabel.setColumnStretchable(1,true);
 
         for(int i=1;i<=noPlayers;i++)
         {
@@ -33,9 +32,9 @@ public class ScoreTableActivity extends AppCompatActivity {
             TextView casetScor = new TextView(this);
             casetNume.setText(playersList.get(i-1).getName());
             casetScor.setText(String.valueOf(playersList.get(i-1).getScore()));
-            casetNume.setTextSize(TypedValue.COMPLEX_UNIT_DIP,30);
-            casetScor.setTextSize(TypedValue.COMPLEX_UNIT_DIP,30);
-            casetScor.setGravity(Gravity.RIGHT);
+            casetNume.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
+            casetNume.setWidth(TypedValue.COMPLEX_UNIT_DIP*720);
+            casetScor.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
             rand.addView(casetNume);
             rand.addView(casetScor);
             tabel.addView(rand);
