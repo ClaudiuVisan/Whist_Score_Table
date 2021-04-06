@@ -7,7 +7,6 @@ import android.view.Gravity;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 
 public class ScoreTableActivity extends AppCompatActivity {
@@ -22,7 +21,7 @@ public class ScoreTableActivity extends AppCompatActivity {
         TableLayout tabel = (TableLayout) findViewById(R.id.tabel);
         tabel.setColumnStretchable(0,true);
         tabel.setColumnStretchable(1,true);
-
+        tabel.setVerticalGravity(Gravity.START);
         for(int i=1;i<=noPlayers;i++)
         {
             TableRow rand = new TableRow(this);
@@ -35,6 +34,7 @@ public class ScoreTableActivity extends AppCompatActivity {
             casetNume.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
             casetNume.setWidth(TypedValue.COMPLEX_UNIT_DIP*720);
             casetScor.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
+            casetScor.setGravity(Gravity.RIGHT);
             rand.addView(casetNume);
             rand.addView(casetScor);
             tabel.addView(rand);
