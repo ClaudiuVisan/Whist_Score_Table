@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -32,7 +33,7 @@ public class ScoreTableActivity extends AppCompatActivity {
             casetNume.setText(playersList.get(i-1).getName());
             casetScor.setText(String.valueOf(playersList.get(i-1).getScore()));
             casetNume.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
-            casetNume.setWidth(TypedValue.COMPLEX_UNIT_DIP*720);
+            casetNume.setWidth(TypedValue.COMPLEX_UNIT_DIP*560);
             casetScor.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
             casetScor.setGravity(Gravity.RIGHT);
             rand.addView(casetNume);
