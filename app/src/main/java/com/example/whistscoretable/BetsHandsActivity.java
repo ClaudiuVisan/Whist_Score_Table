@@ -9,15 +9,15 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class BetsHandsActivity extends AppCompatActivity {
     private ArrayList<Player> playersList;
     private boolean isChecking = true;
     private int mCheckedId = R.id.btn0;
-    private int noPlayers, bet, cnt=0, round, hands;
-    private boolean go=false;
-
+    private int noPlayers, cnt=0, round, hands;
+    private boolean finishBet=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,32 +67,61 @@ public class BetsHandsActivity extends AppCompatActivity {
         showName.setText(playersList.get(0).getName());
     }
 
-    public void onClickPlaceBet(View view) {
-        bet=0;
 
+    public void onClickPlaceBet(View view) {
+            isChecked();
+            if(finishBet) {
+                Intent checkBets = new Intent(this, CheckBetsActivity.class);
+                Bundle passPlayersList = new Bundle();
+                passPlayersList.putSerializable("playerList",(Serializable) playersList);
+                checkBets.putExtras(passPlayersList);
+                checkBets.putExtra("noPlayers",noPlayers);
+                startActivity(checkBets);
+            }
+    }
+
+    public void isChecked(){
         if (mCheckedId == R.id.btn0) {
-            Toast.makeText(this, "0", Toast.LENGTH_SHORT).show(); bet=0;
+            Toast.makeText(this, "0", Toast.LENGTH_SHORT).show();
+            setPlayerBet(0);
         } else if (mCheckedId == R.id.btn1) {
-            Toast.makeText(this, "1", Toast.LENGTH_SHORT).show(); bet=1;
+            Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
+            setPlayerBet(1);
         } else if (mCheckedId == R.id.btn2) {
-            Toast.makeText(this, "2", Toast.LENGTH_SHORT).show(); bet=2;
+            Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
+            setPlayerBet(2);
         } else if (mCheckedId == R.id.btn3) {
-            Toast.makeText(this, "3", Toast.LENGTH_SHORT).show(); bet=3;
+            Toast.makeText(this, "3", Toast.LENGTH_SHORT).show();
+            setPlayerBet(3);
         } else if (mCheckedId == R.id.btn4) {
-            Toast.makeText(this, "4", Toast.LENGTH_SHORT).show(); bet=4;
+            Toast.makeText(this, "4", Toast.LENGTH_SHORT).show();
+            setPlayerBet(4);
         } else if (mCheckedId == R.id.btn5) {
-            Toast.makeText(this, "5", Toast.LENGTH_SHORT).show(); bet=5;
+            Toast.makeText(this, "5", Toast.LENGTH_SHORT).show();
+            setPlayerBet(5);
         } else if (mCheckedId == R.id.btn6) {
-            Toast.makeText(this, "6", Toast.LENGTH_SHORT).show(); bet=6;
+            Toast.makeText(this, "6", Toast.LENGTH_SHORT).show();
+            setPlayerBet(6);
         } else if (mCheckedId == R.id.btn7) {
-            Toast.makeText(this, "7", Toast.LENGTH_SHORT).show(); bet=7;
+            Toast.makeText(this, "7", Toast.LENGTH_SHORT).show();
+            setPlayerBet(7);
         } else if (mCheckedId == R.id.btn8) {
-            Toast.makeText(this, "8", Toast.LENGTH_SHORT).show(); bet=8;
+            Toast.makeText(this, "8", Toast.LENGTH_SHORT).show();
+            setPlayerBet(8);
         }
-        go=true;
+    }
+
+    public void setPlayerBet(int bet){
         TextView showName = (TextView) findViewById(R.id.showName);
-        showName.setText(playersList.get(cnt+1).getName());
+        if(cnt<noPlayers-1)
+        {
+            showName.setText(playersList.get(cnt+1).getName());
+        }
         playersList.get(cnt).setBet(bet);
+        System.out.println(playersList.get(cnt).getBet());
         cnt++;
+        if(cnt==noPlayers) {
+            finishBet = true;
+        }
     }
 }

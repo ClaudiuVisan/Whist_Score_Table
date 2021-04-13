@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class ScoreTableActivity extends AppCompatActivity {
     private ArrayList<Player> playersList;
-    private TableLayout tabel;
+    private TableLayout scoreTable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class ScoreTableActivity extends AppCompatActivity {
 
         playersList = (ArrayList<Player>) getIntent().getSerializableExtra("playerList");
         int noPlayers = (getIntent().getIntExtra("noPlayers",3));
-        tabelski(noPlayers);
+        setScoreTable(noPlayers);
         Button placeBets = (Button) findViewById(R.id.placeBets);
         placeBets.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,13 +42,13 @@ public class ScoreTableActivity extends AppCompatActivity {
 
     }
 
-   public void tabelski(int noPlayers)
+   public void setScoreTable(int noPlayers)
    {
-       tabel = (TableLayout) findViewById(R.id.tabel);
-       tabel.setVerticalGravity(Gravity.CENTER_VERTICAL);
-       tabel.setColumnStretchable(0,true);
-       tabel.setColumnStretchable(1,true);
-       tabel.setVerticalGravity(Gravity.START);
+       scoreTable = (TableLayout) findViewById(R.id.tabel);
+       scoreTable.setVerticalGravity(Gravity.CENTER_VERTICAL);
+       scoreTable.setColumnStretchable(0,true);
+       scoreTable.setColumnStretchable(1,true);
+       scoreTable.setVerticalGravity(Gravity.START);
        for(int i=1;i<=noPlayers;i++)
        {
            TableRow rand = new TableRow(this);
@@ -64,7 +64,7 @@ public class ScoreTableActivity extends AppCompatActivity {
            casetScor.setGravity(Gravity.RIGHT);
            rand.addView(casetNume,myParams);
            rand.addView(casetScor,myParams);
-           tabel.addView(rand,myParams);
+           scoreTable.addView(rand,myParams);
        }
    }
 }

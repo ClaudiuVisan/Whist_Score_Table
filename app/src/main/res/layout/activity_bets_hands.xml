@@ -118,5 +118,5 @@
         android:layout_below="@+id/third_group"
         android:layout_marginTop="193dp"
         android:onClick="onClickPlaceBet"
-        android:text="@string/placeBets" />
+        android:text="@string/placeBet" />
 </RelativeLayout>

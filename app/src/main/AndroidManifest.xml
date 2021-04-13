@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WhistScoreTable">
+        <activity android:name=".CheckBetsActivity"></activity>
         <activity android:name=".BetsHandsActivity" />
         <activity
             android:name=".ScoreTableActivity"
