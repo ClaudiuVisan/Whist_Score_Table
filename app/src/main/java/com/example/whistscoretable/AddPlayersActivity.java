@@ -51,6 +51,8 @@ public class AddPlayersActivity extends AppCompatActivity {
         }
         startGame.putExtras(passPlayersList);
         startGame.putExtra("noPlayers",noPlayers);
+        int round = 0, hands=8;
+ 
         startActivity(startGame);
     }
 
