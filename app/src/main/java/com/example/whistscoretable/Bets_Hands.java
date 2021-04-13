@@ -15,7 +15,7 @@ public class Bets_Hands extends AppCompatActivity {
     private ArrayList<Player> playersList;
     private boolean isChecking = true;
     private int mCheckedId = R.id.btn0;
-    private int noPlayers, bet, cnt=0;
+    private int noPlayers, bet, cnt=0, round, hands;
     private boolean go=false;
 
     @Override
@@ -23,7 +23,7 @@ public class Bets_Hands extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bets_hands);
         playersList = (ArrayList<Player>) getIntent().getSerializableExtra("playerList");
-        noPlayers=(getIntent().getIntExtra("noPlayers",3));
+        noPlayers = (getIntent().getIntExtra("noPlayers",3));
         RadioGroup mFirstGroup = (RadioGroup) findViewById(R.id.first_group);
         RadioGroup mSecondGroup = (RadioGroup) findViewById(R.id.second_group);
         RadioGroup mThirdGroup = (RadioGroup) findViewById(R.id.third_group);
@@ -69,6 +69,7 @@ public class Bets_Hands extends AppCompatActivity {
 
     public void placeBet(View view) {
         bet=0;
+
         if (mCheckedId == R.id.btn0) {
             Toast.makeText(this, "0", Toast.LENGTH_SHORT).show(); bet=0;
         } else if (mCheckedId == R.id.btn1) {

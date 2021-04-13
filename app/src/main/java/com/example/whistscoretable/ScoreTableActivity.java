@@ -18,13 +18,14 @@ import java.util.ArrayList;
 public class ScoreTableActivity extends AppCompatActivity {
     private ArrayList<Player> playersList;
     private TableLayout tabel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
 
         playersList = (ArrayList<Player>) getIntent().getSerializableExtra("playerList");
-        int noPlayers=(getIntent().getIntExtra("noPlayers",3));
+        int noPlayers = (getIntent().getIntExtra("noPlayers",3));
         tabelski(noPlayers);
         Button placeBets = (Button) findViewById(R.id.placeBets);
         placeBets.setOnClickListener(new View.OnClickListener() {
