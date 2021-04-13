@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class Bets_Hands extends AppCompatActivity {
+public class BetsHandsActivity extends AppCompatActivity {
     private ArrayList<Player> playersList;
     private boolean isChecking = true;
     private int mCheckedId = R.id.btn0;
@@ -67,7 +67,7 @@ public class Bets_Hands extends AppCompatActivity {
         showName.setText(playersList.get(0).getName());
     }
 
-    public void placeBet(View view) {
+    public void onClickPlaceBet(View view) {
         bet=0;
         if (mCheckedId == R.id.btn0) {
             Toast.makeText(this, "0", Toast.LENGTH_SHORT).show(); bet=0;
@@ -94,6 +94,4 @@ public class Bets_Hands extends AppCompatActivity {
         playersList.get(cnt).setBet(bet);
         cnt++;
     }
-
-
 }

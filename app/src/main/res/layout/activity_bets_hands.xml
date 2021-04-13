@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Bets_Hands">
+    tools:context=".BetsHandsActivity">
 
     <TextView
         android:id="@+id/showName"
@@ -117,6 +117,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/third_group"
         android:layout_marginTop="193dp"
-        android:onClick="placeBet"
-        android:text="place Bet" />
+        android:onClick="onClickPlaceBet"
+        android:text="@string/placeBets" />
 </RelativeLayout>

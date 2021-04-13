@@ -30,7 +30,7 @@ public class ScoreTableActivity extends AppCompatActivity {
         placeBets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent bets = new Intent(ScoreTableActivity.this, Bets_Hands.class);
+                Intent bets = new Intent(ScoreTableActivity.this, BetsHandsActivity.class);
                 Bundle passPlayersList = new Bundle();
                 passPlayersList.putSerializable("playerList",(Serializable) playersList);
                 bets.putExtras(passPlayersList);
