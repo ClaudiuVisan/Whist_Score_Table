@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ScoreTableActivity">
+    tools:context=".CheckBetsActivity">
 
     <TextView
-        android:id="@+id/scoreView"
+        android:id="@+id/betView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/scoreView"
+        android:text="@string/betView"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,30 +20,31 @@
         app:layout_constraintVertical_bias="0.121" />
 
     <TableLayout
-        android:id="@+id/tabel"
+        android:id="@+id/betTable"
         android:layout_width="326dp"
         android:layout_height="320dp"
         android:layout_marginTop="12dp"
         android:stretchColumns="0,1"
-        app:layout_constraintBottom_toTopOf="@+id/placeBets"
+        app:layout_constraintBottom_toTopOf="@+id/done"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scoreView"
+        app:layout_constraintTop_toBottomOf="@+id/betView"
         app:layout_constraintVertical_bias="0.326">
 
     </TableLayout>
 
     <Button
-        android:id="@+id/placeBets"
+        android:id="@+id/done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/placeBets"
+        android:text="@string/doneText"
+        android:onClick="onClickFinishCheck"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabel"
+        app:layout_constraintTop_toBottomOf="@+id/betTable"
         app:layout_constraintVertical_bias="0.211" />
 
     <androidx.constraintlayout.widget.Barrier
@@ -51,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="scoreView"
+        app:constraint_referenced_ids="betView"
         tools:layout_editor_absoluteY="633dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
