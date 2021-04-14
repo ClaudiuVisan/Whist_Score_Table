@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/showBet"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text="@string/playerName"
         android:textSize="30sp" />
 
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/showName"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="50dp"
         android:orientation="horizontal">
 
         <RadioButton
@@ -200,9 +200,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/third_group"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="60dp"
         android:onClick="onClickPlaceBet"
         android:text="@string/placeBet"
         android:textAlignment="center"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:background="@drawable/round_corner"/>
 </RelativeLayout>

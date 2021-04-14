@@ -15,44 +15,69 @@
 
     <TextView
         android:id="@+id/showBetName"
-        android:layout_below="@+id/results"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/results"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text="@string/playerName"
         android:textSize="30sp" />
 
     <RadioGroup
         android:id="@+id/first_groupRes"
-        android:layout_below="@+id/showBetName"
-        android:layout_marginTop="100dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/showBetName"
+        android:layout_marginTop="50dp"
         android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/btn00"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:layout_weight="1"
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:checked="false"
+            android:elevation="4dp"
+            android:padding="8dp"
             android:text="0"
-            android:checked="true"
-            />
+            android:textAlignment="center"
+            android:textColor="@drawable/text_color"
+            android:textSize="21sp" />
 
         <RadioButton
             android:id="@+id/btn01"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:layout_weight="1"
-            android:text="1" />
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:checked="false"
+            android:elevation="4dp"
+            android:padding="8dp"
+            android:text="1"
+            android:textAlignment="center"
+            android:textColor="@drawable/text_color"
+            android:textSize="21sp" />
 
         <RadioButton
             android:id="@+id/btn02"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:layout_weight="1"
-            android:text="2" />
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:checked="false"
+            android:elevation="4dp"
+            android:padding="8dp"
+            android:text="2"
+            android:textAlignment="center"
+            android:textColor="@drawable/text_color"
+            android:textSize="21sp" />
 
     </RadioGroup>
 
@@ -68,12 +93,28 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:checked="false"
+            android:elevation="4dp"
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:textColor="@drawable/text_color"
+            android:textSize="21sp"
+            android:layout_margin="16dp"
             android:text="3" />
 
         <RadioButton
             android:id="@+id/btn04"
-
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:checked="false"
+            android:elevation="4dp"
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:textColor="@drawable/text_color"
+            android:textSize="21sp"
+            android:layout_margin="16dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -84,7 +125,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:checked="false"
+            android:elevation="4dp"
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:textColor="@drawable/text_color"
+            android:textSize="21sp"
+            android:layout_margin="16dp"
             android:text="5" />
     </RadioGroup>
 
@@ -97,7 +146,15 @@
 
         <RadioButton
             android:id="@+id/btn06"
-
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:checked="false"
+            android:elevation="4dp"
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:textColor="@drawable/text_color"
+            android:textSize="21sp"
+            android:layout_margin="16dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -108,23 +165,42 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="7" />
+            android:text="7"
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:checked="false"
+            android:elevation="4dp"
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:textColor="@drawable/text_color"
+            android:textSize="21sp"
+            android:layout_margin="16dp"/>
 
         <RadioButton
             android:id="@+id/btn08"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-
+            android:layout_margin="16dp"
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:checked="false"
+            android:elevation="4dp"
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:textColor="@drawable/text_color"
+            android:textSize="21sp"
             android:text="8" />
     </RadioGroup>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="193dp"
         android:layout_below="@id/third_groupRes"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
         android:onClick="onClickInputResult"
         android:text="@string/inputResult"
-        android:layout_centerHorizontal="true"/>
+        android:background="@drawable/round_corner"
+        android:textSize="24sp"/>
 </RelativeLayout>

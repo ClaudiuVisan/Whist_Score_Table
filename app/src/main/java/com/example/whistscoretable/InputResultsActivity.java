@@ -16,7 +16,7 @@ public class InputResultsActivity extends AppCompatActivity {
 
     private ArrayList<Player> playersList;
     private boolean isChecking = true;
-    private int mCheckedId = R.id.btn0;
+    private int mCheckedId = R.id.btn00;
     private int noPlayers, index =0;
     private boolean finishInput =false;
     @Override

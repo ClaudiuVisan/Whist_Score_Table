@@ -7,7 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.Toast;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -23,19 +26,37 @@ public class AddPlayersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_players);
         Intent newGame = getIntent();
-        Button placeHolder= (Button) findViewById(R.id.placeHolder);
-        Spinner pickNoPlayers = (Spinner) findViewById(R.id.spinner);
         Button startGame= (Button) findViewById(R.id.startGame);
         startGame.setEnabled(false);
-        placeHolder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String noPlayersstr = String.valueOf(pickNoPlayers.getSelectedItem()) ;
-                noPlayers = Integer.parseInt(noPlayersstr);
-                addPlayers();
-                startGame.setEnabled(true);
-            }
-        });
+    }
+
+    public void onClickPlayersNo(View view){
+        boolean checked=((RadioButton) view).isChecked();
+        switch (view.getId()){
+            case (R.id.threePlayers):
+                if(checked) {
+                    noPlayers = 3;
+                    break;
+                }
+            case (R.id.fourPlayers):
+                if(checked) {
+                    noPlayers = 4;
+                    break;
+                }
+            case (R.id.fivePlayers):
+                if(checked) {
+                    noPlayers = 5;
+                    break;
+                }
+            case (R.id.sixPlayers):
+                if(checked) {
+                    noPlayers = 6;
+                    break;
+                }
+        }
+        addPlayers();
+        Button startGame= (Button) findViewById(R.id.startGame);
+        startGame.setEnabled(true);
     }
 
     public void onClickStartGame(View view){
@@ -52,7 +73,6 @@ public class AddPlayersActivity extends AppCompatActivity {
         startGame.putExtras(passPlayersList);
         startGame.putExtra("noPlayers",noPlayers);
         int round = 0, hands=8;
- 
         startActivity(startGame);
     }
 

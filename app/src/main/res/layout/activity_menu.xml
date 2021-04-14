@@ -20,7 +20,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newGame"
         app:layout_constraintVertical_bias="0.077"
-        android:onClick="onClickLoadGame"/>
+        android:onClick="onClickLoadGame"
+        android:background="@drawable/round_corner"/>
 
     <TextView
         android:id="@+id/titlu"
@@ -50,6 +51,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titlu"
-        app:layout_constraintVertical_bias="0.718" />
+        app:layout_constraintVertical_bias="0.718"
+        android:background="@drawable/round_corner"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
