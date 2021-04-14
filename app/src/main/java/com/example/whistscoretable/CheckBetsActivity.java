@@ -55,7 +55,7 @@ public class CheckBetsActivity extends AppCompatActivity {
     }
     public void onClickFinishCheck(View view)
     {
-        Intent finishCheck = new Intent(this, ScoreTableActivity.class);
+        Intent finishCheck = new Intent(this, InputResultsActivity.class);
         Bundle passPlayersList = new Bundle();
         passPlayersList.putSerializable("playerList",(Serializable) playersList);
         finishCheck.putExtras(passPlayersList);

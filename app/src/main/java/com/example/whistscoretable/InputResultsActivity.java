@@ -12,21 +12,22 @@ import android.widget.Toast;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class BetsHandsActivity extends AppCompatActivity {
+public class InputResultsActivity extends AppCompatActivity {
+
     private ArrayList<Player> playersList;
     private boolean isChecking = true;
     private int mCheckedId = R.id.btn0;
-    private int noPlayers, cnt=0, round, hands;
-    private boolean finishBet=false;
+    private int noPlayers, index =0;
+    private boolean finishInput =false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bets_hands);
+        setContentView(R.layout.activity_input_results);
         playersList = (ArrayList<Player>) getIntent().getSerializableExtra("playerList");
         noPlayers = (getIntent().getIntExtra("noPlayers",3));
-        RadioGroup mFirstGroup = (RadioGroup) findViewById(R.id.first_group);
-        RadioGroup mSecondGroup = (RadioGroup) findViewById(R.id.second_group);
-        RadioGroup mThirdGroup = (RadioGroup) findViewById(R.id.third_group);
+        RadioGroup mFirstGroup = (RadioGroup) findViewById(R.id.first_groupRes);
+        RadioGroup mSecondGroup = (RadioGroup) findViewById(R.id.second_groupRes);
+        RadioGroup mThirdGroup = (RadioGroup) findViewById(R.id.third_groupRes);
         mFirstGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -63,64 +64,64 @@ public class BetsHandsActivity extends AppCompatActivity {
                 isChecking = true;
             }
         });
-        TextView showName = (TextView) findViewById(R.id.showName);
+        TextView showName = (TextView) findViewById(R.id.showBetName);
         showName.setText(playersList.get(0).getName());
     }
 
 
-    public void onClickPlaceBet(View view) {
-            isChecked();
-            if(finishBet) {
-                Intent checkBets = new Intent(this, CheckBetsActivity.class);
-                Bundle passPlayersList = new Bundle();
-                passPlayersList.putSerializable("playerList",(Serializable) playersList);
-                checkBets.putExtras(passPlayersList);
-                checkBets.putExtra("noPlayers",noPlayers);
-                startActivity(checkBets);
-            }
+    public void onClickInputResult(View view) {
+        isChecked();
+    if(finishInput) {
+            Intent viewScore = new Intent(this, ScoreTableActivity.class);
+            Bundle passPlayersList = new Bundle();
+            passPlayersList.putSerializable("playerList",(Serializable) playersList);
+            viewScore.putExtras(passPlayersList);
+            viewScore.putExtra("noPlayers",noPlayers);
+            startActivity(viewScore);
+        }
     }
 
     public void isChecked(){
-        if (mCheckedId == R.id.btn0) {
+        if (mCheckedId == R.id.btn00) {
             Toast.makeText(this, "0", Toast.LENGTH_SHORT).show();
-            setPlayerBet(0);
-        } else if (mCheckedId == R.id.btn1) {
+            setPlayerScore(0);
+        } else if (mCheckedId == R.id.btn01) {
             Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
-            setPlayerBet(1);
-        } else if (mCheckedId == R.id.btn2) {
+            setPlayerScore(1);
+        } else if (mCheckedId == R.id.btn02) {
             Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
-            setPlayerBet(2);
-        } else if (mCheckedId == R.id.btn3) {
+            setPlayerScore(2);
+        } else if (mCheckedId == R.id.btn03) {
             Toast.makeText(this, "3", Toast.LENGTH_SHORT).show();
-            setPlayerBet(3);
-        } else if (mCheckedId == R.id.btn4) {
+            setPlayerScore(3);
+        } else if (mCheckedId == R.id.btn04) {
             Toast.makeText(this, "4", Toast.LENGTH_SHORT).show();
-            setPlayerBet(4);
-        } else if (mCheckedId == R.id.btn5) {
+            setPlayerScore(4);
+        } else if (mCheckedId == R.id.btn05) {
             Toast.makeText(this, "5", Toast.LENGTH_SHORT).show();
-            setPlayerBet(5);
-        } else if (mCheckedId == R.id.btn6) {
+            setPlayerScore(5);
+        } else if (mCheckedId == R.id.btn06) {
             Toast.makeText(this, "6", Toast.LENGTH_SHORT).show();
-            setPlayerBet(6);
-        } else if (mCheckedId == R.id.btn7) {
+            setPlayerScore(6);
+        } else if (mCheckedId == R.id.btn07) {
             Toast.makeText(this, "7", Toast.LENGTH_SHORT).show();
-            setPlayerBet(7);
-        } else if (mCheckedId == R.id.btn8) {
+            setPlayerScore(7);
+        } else if (mCheckedId == R.id.btn08) {
             Toast.makeText(this, "8", Toast.LENGTH_SHORT).show();
-            setPlayerBet(8);
+            setPlayerScore(8);
         }
     }
 
-    public void setPlayerBet(int bet){
-        TextView showName = (TextView) findViewById(R.id.showName);
-        if(cnt<noPlayers-1)
+    public void setPlayerScore(int bet){
+        TextView showName = (TextView) findViewById(R.id.showBetName);
+        if(index <noPlayers-1)
         {
-            showName.setText(playersList.get(cnt+1).getName());
+            showName.setText(playersList.get(index +1).getName());
         }
-        playersList.get(cnt).setBet(bet);
-        cnt++;
-        if(cnt==noPlayers) {
-            finishBet = true;
+        playersList.get(index).setScore(bet+playersList.get(index).getScore());
+        index++;
+        if(index==noPlayers) {
+            finishInput = true;
         }
     }
 }
