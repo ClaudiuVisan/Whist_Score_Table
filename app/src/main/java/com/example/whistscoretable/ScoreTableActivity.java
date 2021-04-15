@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 public class ScoreTableActivity extends AppCompatActivity {
     private ArrayList<Player> playersList;
+    private CurrentGame currentGame;
     private TableLayout scoreTable;
 
     @Override
@@ -25,6 +26,7 @@ public class ScoreTableActivity extends AppCompatActivity {
         setContentView(R.layout.activity_score);
 
         playersList = (ArrayList<Player>) getIntent().getSerializableExtra("playerList");
+        currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
         int noPlayers = (getIntent().getIntExtra("noPlayers",3));
         setScoreTable(noPlayers);
         Button placeBets = (Button) findViewById(R.id.placeBets);
@@ -33,8 +35,11 @@ public class ScoreTableActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent bets = new Intent(ScoreTableActivity.this, BetsHandsActivity.class);
                 Bundle passPlayersList = new Bundle();
+                Bundle passCurrentGame = new Bundle();
                 passPlayersList.putSerializable("playerList",(Serializable) playersList);
+                passCurrentGame.putSerializable("currentGame",(Serializable) currentGame);
                 bets.putExtras(passPlayersList);
+                bets.putExtras(passCurrentGame);
                 bets.putExtra("noPlayers",noPlayers);
                 startActivity(bets);
             }

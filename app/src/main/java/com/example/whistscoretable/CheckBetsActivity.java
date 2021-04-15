@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class CheckBetsActivity extends AppCompatActivity {
 
     private ArrayList<Player> playersList;
+    private CurrentGame currentGame;
     private TableLayout betTable;
     private int noPlayers;
 
@@ -24,6 +25,7 @@ public class CheckBetsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_bets);
         playersList = (ArrayList<Player>) getIntent().getSerializableExtra("playerList");
+        currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
         noPlayers = (getIntent().getIntExtra("noPlayers",3));
         createBetTable(noPlayers);
     }
@@ -57,8 +59,11 @@ public class CheckBetsActivity extends AppCompatActivity {
     {
         Intent finishCheck = new Intent(this, InputResultsActivity.class);
         Bundle passPlayersList = new Bundle();
+        Bundle passCurrentGame = new Bundle();
         passPlayersList.putSerializable("playerList",(Serializable) playersList);
+        passCurrentGame.putSerializable("currentGame",(Serializable) currentGame);
         finishCheck.putExtras(passPlayersList);
+        finishCheck.putExtras(passCurrentGame);
         finishCheck.putExtra("noPlayers",noPlayers);
         startActivity(finishCheck);
     }

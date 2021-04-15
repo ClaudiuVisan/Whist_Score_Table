@@ -14,15 +14,18 @@ import java.util.ArrayList;
 
 public class BetsHandsActivity extends AppCompatActivity {
     private ArrayList<Player> playersList;
+    private CurrentGame currentGame;
     private boolean isChecking = true;
     private int mCheckedId = R.id.btn0;
-    private int noPlayers, cnt=0, round, hands;
+    private int noPlayers, cnt=0;
     private boolean finishBet=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bets_hands);
         playersList = (ArrayList<Player>) getIntent().getSerializableExtra("playerList");
+        currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
+        currentGame.setRound(currentGame.getRound()+1);
         noPlayers = (getIntent().getIntExtra("noPlayers",3));
         RadioGroup mFirstGroup = (RadioGroup) findViewById(R.id.first_group);
         RadioGroup mSecondGroup = (RadioGroup) findViewById(R.id.second_group);
@@ -73,8 +76,11 @@ public class BetsHandsActivity extends AppCompatActivity {
             if(finishBet) {
                 Intent checkBets = new Intent(this, CheckBetsActivity.class);
                 Bundle passPlayersList = new Bundle();
+                Bundle passCurrentGame = new Bundle();
                 passPlayersList.putSerializable("playerList",(Serializable) playersList);
+                passCurrentGame.putSerializable("currentGame",(Serializable) currentGame);
                 checkBets.putExtras(passPlayersList);
+                checkBets.putExtras(passCurrentGame);
                 checkBets.putExtra("noPlayers",noPlayers);
                 startActivity(checkBets);
             }

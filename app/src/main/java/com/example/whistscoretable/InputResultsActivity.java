@@ -17,7 +17,7 @@ public class InputResultsActivity extends AppCompatActivity {
     private ArrayList<Player> playersList;
     private boolean isChecking = true;
     private int mCheckedId = R.id.btn00;
-    private int noPlayers, index =0;
+    private int noPlayers, index =0,result=0;
     private boolean finishInput =false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class InputResultsActivity extends AppCompatActivity {
                 isChecking = true;
             }
         });
-        TextView showName = (TextView) findViewById(R.id.showBetName);
+        TextView showName = (TextView) findViewById(R.id.showResultName);
         showName.setText(playersList.get(0).getName());
     }
 
@@ -72,6 +72,7 @@ public class InputResultsActivity extends AppCompatActivity {
     public void onClickInputResult(View view) {
         isChecked();
     if(finishInput) {
+            setPlayersScore();
             Intent viewScore = new Intent(this, ScoreTableActivity.class);
             Bundle passPlayersList = new Bundle();
             passPlayersList.putSerializable("playerList",(Serializable) playersList);
@@ -84,44 +85,68 @@ public class InputResultsActivity extends AppCompatActivity {
     public void isChecked(){
         if (mCheckedId == R.id.btn00) {
             Toast.makeText(this, "0", Toast.LENGTH_SHORT).show();
-            setPlayerScore(0);
+            result=0;
+            setPlayerResult();
         } else if (mCheckedId == R.id.btn01) {
             Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
-            setPlayerScore(1);
+            result=1;
+            setPlayerResult();
         } else if (mCheckedId == R.id.btn02) {
             Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
-            setPlayerScore(2);
+            result=2;
+            setPlayerResult();
         } else if (mCheckedId == R.id.btn03) {
             Toast.makeText(this, "3", Toast.LENGTH_SHORT).show();
-            setPlayerScore(3);
+            result=3;
+            setPlayerResult();
         } else if (mCheckedId == R.id.btn04) {
             Toast.makeText(this, "4", Toast.LENGTH_SHORT).show();
-            setPlayerScore(4);
+            result=4;
+            setPlayerResult();
         } else if (mCheckedId == R.id.btn05) {
             Toast.makeText(this, "5", Toast.LENGTH_SHORT).show();
-            setPlayerScore(5);
+            result=5;
+            setPlayerResult();
         } else if (mCheckedId == R.id.btn06) {
             Toast.makeText(this, "6", Toast.LENGTH_SHORT).show();
-            setPlayerScore(6);
+            result=6;
+            setPlayerResult();
         } else if (mCheckedId == R.id.btn07) {
             Toast.makeText(this, "7", Toast.LENGTH_SHORT).show();
-            setPlayerScore(7);
+            result=7;
+            setPlayerResult();
         } else if (mCheckedId == R.id.btn08) {
             Toast.makeText(this, "8", Toast.LENGTH_SHORT).show();
-            setPlayerScore(8);
+            result=8;
+            setPlayerResult();
         }
     }
 
-    public void setPlayerScore(int bet){
-        TextView showName = (TextView) findViewById(R.id.showBetName);
+    public void setPlayerResult(){
+        TextView showName = (TextView) findViewById(R.id.showResultName);
         if(index <noPlayers-1)
         {
             showName.setText(playersList.get(index +1).getName());
         }
-        playersList.get(index).setScore(bet+playersList.get(index).getScore());
+        playersList.get(index).setResult(result);
         index++;
         if(index==noPlayers) {
             finishInput = true;
         }
     }
+
+    public void setPlayersScore(){
+        for(int i=0;i<noPlayers;i++)
+        {
+            if(playersList.get(i).getBet()==playersList.get(i).getResult())
+            {
+                playersList.get(i).setScore(playersList.get(i).getScore()+5+playersList.get(i).getBet());
+            }
+            else{
+                playersList.get(i).setScore(playersList.get(i).getScore()-Math.abs(playersList.get(i).getBet()-playersList.get(i).getResult()));
+            }
+        }
+    }
+
+
 }
