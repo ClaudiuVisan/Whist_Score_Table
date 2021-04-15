@@ -14,7 +14,7 @@
         android:textSize="30sp" />
 
     <TextView
-        android:id="@+id/showBetName"
+        android:id="@+id/showResultName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/results"
@@ -27,7 +27,7 @@
         android:id="@+id/first_groupRes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/showBetName"
+        android:layout_below="@+id/showResultName"
         android:layout_marginTop="50dp"
         android:orientation="horizontal">
 
