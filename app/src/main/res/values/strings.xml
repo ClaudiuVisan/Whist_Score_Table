@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">Whist Score Table</string>
     <string name="titlu">WHIST SCORE TABLE</string>
-    <string name="new_game">START GAME</string>
+    <string name="newGame">START GAME</string>
     <string name="noPlayers">SELECT NUMBER OF PLAYERS</string>
-    <string name="load_game">LOAD GAME</string>
+    <string name="loadGame">LOAD GAME</string>
     <string name="spinPlayers">PLAYERS</string>
+    <string name="startGame">START GAME</string>
     <string-array name="spinNoPlayers">
         <item>3</item>
         <item>4</item>
@@ -12,4 +13,12 @@
         <item>6</item>
     </string-array>
     <string name="scoreView">Players Score</string>
+    <string name="placeBets">PLACE BETS</string>
+    <string name="placeBet">PLACE BET</string>
+    <string name="betView">Players Bets</string>
+    <string name="playerName">Player</string>
+    <string name="inputResult">NEXT</string>
+    <string name="results">Result for player</string>
+    <string name="bet">Bet for player</string>
+    <string name="doneText">Input Results</string>
 </resources>
