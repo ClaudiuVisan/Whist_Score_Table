@@ -11,7 +11,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="288dp">
+        android:layout_height="227dp">
+
 
         <RadioGroup
             android:layout_width="wrap_content"
@@ -23,7 +24,7 @@
             app:layout_constraintHorizontal_bias="0.473"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintVertical_bias="0.478">
+            app:layout_constraintVertical_bias="0.323">
 
             <RadioButton
                 android:id="@+id/threePlayers"
@@ -34,12 +35,12 @@
                 android:button="@android:color/transparent"
                 android:checked="false"
                 android:elevation="4dp"
+                android:onClick="onClickPlayersNo"
                 android:padding="8dp"
+                android:text="3"
                 android:textAlignment="center"
                 android:textColor="@drawable/text_color"
-                android:textSize="30sp"
-                android:text="3"
-                android:onClick="onClickPlayersNo"/>
+                android:textSize="30sp" />
 
             <RadioButton
                 android:id="@+id/fourPlayers"
@@ -100,16 +101,17 @@
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.138" />
-
+            app:layout_constraintVertical_bias="0.101" />
 
         <Button
             android:id="@+id/startGame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            android:background="@drawable/round_corner"
             android:onClick="onClickStartGame"
             android:text="@string/startGame"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -117,8 +119,7 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintVertical_bias="1.0"
-            android:background="@drawable/round_corner"/>
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

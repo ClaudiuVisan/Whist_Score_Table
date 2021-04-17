@@ -1,7 +1,6 @@
 package com.example.whistscoretable;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -11,12 +10,10 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-
 import java.io.Serializable;
-import java.util.ArrayList;
+
 
 public class ScoreTableActivity extends AppCompatActivity {
-    private ArrayList<Player> playersList;
     private CurrentGame currentGame;
     private TableLayout scoreTable;
 
@@ -24,23 +21,16 @@ public class ScoreTableActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
-
-        playersList = (ArrayList<Player>) getIntent().getSerializableExtra("playerList");
         currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
-        int noPlayers = (getIntent().getIntExtra("noPlayers",3));
-        setScoreTable(noPlayers);
+        setScoreTable(currentGame.getNoPlayers());
         Button placeBets = (Button) findViewById(R.id.placeBets);
         placeBets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent bets = new Intent(ScoreTableActivity.this, BetsHandsActivity.class);
-                Bundle passPlayersList = new Bundle();
                 Bundle passCurrentGame = new Bundle();
-                passPlayersList.putSerializable("playerList",(Serializable) playersList);
                 passCurrentGame.putSerializable("currentGame",(Serializable) currentGame);
-                bets.putExtras(passPlayersList);
                 bets.putExtras(passCurrentGame);
-                bets.putExtra("noPlayers",noPlayers);
                 startActivity(bets);
             }
         });
@@ -54,15 +44,15 @@ public class ScoreTableActivity extends AppCompatActivity {
        scoreTable.setColumnStretchable(0,true);
        scoreTable.setColumnStretchable(1,true);
        scoreTable.setVerticalGravity(Gravity.START);
-       for(int i=1;i<=noPlayers;i++)
+       for(int i=1;i<=currentGame.getNoPlayers();i++)
        {
            TableRow rand = new TableRow(this);
            TableRow.LayoutParams myParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.MATCH_PARENT);
            rand.setLayoutParams(myParams);
            TextView casetNume = new TextView(this);
            TextView casetScor = new TextView(this);
-           casetNume.setText(playersList.get(i-1).getName());
-           casetScor.setText(String.valueOf(playersList.get(i-1).getScore()));
+           casetNume.setText(currentGame.getPlayersList().get(i-1).getName());
+           casetScor.setText(String.valueOf(currentGame.getPlayersList().get(i-1).getScore()));
            casetNume.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
            casetNume.setWidth(TypedValue.COMPLEX_UNIT_DIP*720);
            casetScor.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
