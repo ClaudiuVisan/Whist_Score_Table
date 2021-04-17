@@ -66,7 +66,6 @@ public class AddPlayersActivity extends AppCompatActivity {
         if(nameNotSet==true)
         {
             Toast.makeText(this, "Please enter players names", Toast.LENGTH_SHORT).show();
-            nameNotSet=false;
         }else {
             startActivity(startGame);
        }
@@ -107,6 +106,9 @@ public class AddPlayersActivity extends AppCompatActivity {
             if(caset.getText().toString().trim().length() == 0)
             {
                 nameNotSet=true;
+            }
+            else{
+                nameNotSet=false;
             }
             playersList.add(newPlayer);
             currentGame.setPlayersList(playersList);
