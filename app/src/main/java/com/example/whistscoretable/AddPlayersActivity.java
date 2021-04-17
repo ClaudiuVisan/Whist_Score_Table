@@ -20,6 +20,7 @@ public class AddPlayersActivity extends AppCompatActivity {
     private boolean noPlayersModified = false;
     private ArrayList<Player> playersList = new ArrayList<>();
     LinearLayout addPlayersLayout = null;
+    private CurrentGame currentGame = new CurrentGame();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +56,17 @@ public class AddPlayersActivity extends AppCompatActivity {
                 }
         }
         addPlayers();
-        Button startGame= (Button) findViewById(R.id.startGame);
+        Button startGame = (Button) findViewById(R.id.startGame);
         startGame.setEnabled(true);
     }
 
     public void onClickStartGame(View view){
         Intent startGame = new Intent(AddPlayersActivity.this, ScoreTableActivity.class);
         Bundle passPlayersList = new Bundle();
+        Bundle passCurrentGame = new Bundle();
+        currentGame.setNoRounds(12+3*noPlayers);
+        currentGame.setNoHands(8);
+        currentGame.setRound(0);
         for(int i=1;i<=noPlayers;i++)
         {
             Player newPlayer = new Player();
@@ -69,10 +74,11 @@ public class AddPlayersActivity extends AppCompatActivity {
             newPlayer.setName(caset.getText().toString());
             playersList.add(newPlayer);
             passPlayersList.putSerializable("playerList",(Serializable) playersList);
+            passCurrentGame.putSerializable("currentGame",(Serializable) currentGame);
         }
         startGame.putExtras(passPlayersList);
+        startGame.putExtras(passCurrentGame);
         startGame.putExtra("noPlayers",noPlayers);
-        int round = 0, hands=8;
         startActivity(startGame);
     }
 

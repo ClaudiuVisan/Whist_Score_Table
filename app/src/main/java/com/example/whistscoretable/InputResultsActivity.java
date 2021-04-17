@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class InputResultsActivity extends AppCompatActivity {
 
     private ArrayList<Player> playersList;
+    private CurrentGame currentGame;
     private boolean isChecking = true;
     private int mCheckedId = R.id.btn00;
     private int noPlayers, index =0,result=0;
@@ -24,6 +25,7 @@ public class InputResultsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_results);
         playersList = (ArrayList<Player>) getIntent().getSerializableExtra("playerList");
+        currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
         noPlayers = (getIntent().getIntExtra("noPlayers",3));
         RadioGroup mFirstGroup = (RadioGroup) findViewById(R.id.first_groupRes);
         RadioGroup mSecondGroup = (RadioGroup) findViewById(R.id.second_groupRes);
@@ -71,12 +73,15 @@ public class InputResultsActivity extends AppCompatActivity {
 
     public void onClickInputResult(View view) {
         isChecked();
-        if(finishInput) {
+    if(finishInput) {
             setPlayersScore();
             Intent viewScore = new Intent(this, ScoreTableActivity.class);
             Bundle passPlayersList = new Bundle();
+            Bundle passCurrentGame = new Bundle();
             passPlayersList.putSerializable("playerList",(Serializable) playersList);
+            passCurrentGame.putSerializable("currentGame",(Serializable) currentGame);
             viewScore.putExtras(passPlayersList);
+            viewScore.putExtras(passCurrentGame);
             viewScore.putExtra("noPlayers",noPlayers);
             startActivity(viewScore);
         }
