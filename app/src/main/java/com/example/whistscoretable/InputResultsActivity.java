@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -61,6 +62,13 @@ public class InputResultsActivity extends AppCompatActivity {
                 isChecking = true;
             }
         });
+        int[] idList={R.id.btn00,R.id.btn01,R.id.btn02,R.id.btn03,R.id.btn04,R.id.btn05,R.id.btn06,R.id.btn07,R.id.btn08};
+        for(int i=currentGame.getHandsList()[currentGame.getRound()]+1;i<=8;i++)
+        {
+            RadioButton crtButton = (RadioButton)findViewById(idList[i]);
+            crtButton.setEnabled(false);
+            crtButton.setBackgroundResource(R.drawable.radio_disabled);
+        }
         TextView showName = (TextView) findViewById(R.id.showResultName);
         showName.setText(currentGame.getPlayersList().get(0).getName());
     }

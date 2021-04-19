@@ -19,13 +19,15 @@ public class BetsHandsActivity extends AppCompatActivity {
     private int mCheckedId = R.id.btn0;
     private int cnt=0;
     private boolean finishBet=false;
-    private int idList[]={R.id.btn0,R.id.btn1,R.id.btn2,R.id.btn3,R.id.btn4,R.id.btn5,R.id.btn6,R.id.btn7,R.id.btn8};
+    //private int[] idList={R.id.btn0,R.id.btn1,R.id.btn2,R.id.btn3,R.id.btn4,R.id.btn5,R.id.btn6,R.id.btn7,R.id.btn8};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bets_hands);
         currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
         currentGame.setRound(currentGame.getRound()+1);
+        //System.out.println("Runda "+currentGame.getRound());
+        //System.out.println(currentGame.getHandsList()[currentGame.getRound()]+" maini");
         RadioGroup mFirstGroup = (RadioGroup) findViewById(R.id.first_group);
         RadioGroup mSecondGroup = (RadioGroup) findViewById(R.id.second_group);
         RadioGroup mThirdGroup = (RadioGroup) findViewById(R.id.third_group);
@@ -65,6 +67,7 @@ public class BetsHandsActivity extends AppCompatActivity {
                 isChecking = true;
             }
         });
+        int[] idList={R.id.btn0,R.id.btn1,R.id.btn2,R.id.btn3,R.id.btn4,R.id.btn5,R.id.btn6,R.id.btn7,R.id.btn8};
         for(int i=currentGame.getHandsList()[currentGame.getRound()]+1;i<=8;i++)
         {
             RadioButton crtButton = (RadioButton)findViewById(idList[i]);
@@ -77,14 +80,14 @@ public class BetsHandsActivity extends AppCompatActivity {
 
 
     public void onClickPlaceBet(View view) {
-            isChecked();
-            if(finishBet) {
-                Intent checkBets = new Intent(this, CheckBetsActivity.class);
-                Bundle passCurrentGame = new Bundle();
-                passCurrentGame.putSerializable("currentGame",(Serializable) currentGame);
-                checkBets.putExtras(passCurrentGame);
-                startActivity(checkBets);
-            }
+        isChecked();
+        if(finishBet) {
+            Intent checkBets = new Intent(this, CheckBetsActivity.class);
+            Bundle passCurrentGame = new Bundle();
+            passCurrentGame.putSerializable("currentGame",(Serializable) currentGame);
+            checkBets.putExtras(passCurrentGame);
+            startActivity(checkBets);
+        }
     }
 
     public void isChecked(){
