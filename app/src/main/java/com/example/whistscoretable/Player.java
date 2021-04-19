@@ -40,7 +40,7 @@ public class Player implements Serializable {
 
     Player(){
         score=0;
-        name=" ";
+        name="TBD";
         bet=0;
     }
 

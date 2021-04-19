@@ -1,30 +1,29 @@
 package com.example.whistscoretable;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.Serializable;
-import java.util.ArrayList;
+
 
 public class InputResultsActivity extends AppCompatActivity {
 
-    private ArrayList<Player> playersList;
+    private CurrentGame currentGame;
     private boolean isChecking = true;
     private int mCheckedId = R.id.btn00;
-    private int noPlayers, index =0,result=0;
+
+    private int index =0,result=0;
+
     private boolean finishInput =false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_results);
-        playersList = (ArrayList<Player>) getIntent().getSerializableExtra("playerList");
-        noPlayers = (getIntent().getIntExtra("noPlayers",3));
+        currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
         RadioGroup mFirstGroup = (RadioGroup) findViewById(R.id.first_groupRes);
         RadioGroup mSecondGroup = (RadioGroup) findViewById(R.id.second_groupRes);
         RadioGroup mThirdGroup = (RadioGroup) findViewById(R.id.third_groupRes);
@@ -65,19 +64,18 @@ public class InputResultsActivity extends AppCompatActivity {
             }
         });
         TextView showName = (TextView) findViewById(R.id.showResultName);
-        showName.setText(playersList.get(0).getName());
+        showName.setText(currentGame.getPlayersList().get(0).getName());
     }
 
 
     public void onClickInputResult(View view) {
         isChecked();
-        if(finishInput) {
+    if(finishInput) {
             setPlayersScore();
             Intent viewScore = new Intent(this, ScoreTableActivity.class);
-            Bundle passPlayersList = new Bundle();
-            passPlayersList.putSerializable("playerList",(Serializable) playersList);
-            viewScore.putExtras(passPlayersList);
-            viewScore.putExtra("noPlayers",noPlayers);
+            Bundle passCurrentGame = new Bundle();
+            passCurrentGame.putSerializable("currentGame",(Serializable) currentGame);
+            viewScore.putExtras(passCurrentGame);
             startActivity(viewScore);
         }
     }
@@ -124,29 +122,31 @@ public class InputResultsActivity extends AppCompatActivity {
 
     public void setPlayerResult(){
         TextView showName = (TextView) findViewById(R.id.showResultName);
-        if(index <noPlayers-1)
+        if(index <currentGame.getNoPlayers()-1)
         {
-            showName.setText(playersList.get(index +1).getName());
+            showName.setText(currentGame.getPlayersList().get(index +1).getName());
         }
-        playersList.get(index).setResult(result);
+        currentGame.getPlayersList().get(index).setResult(result);
         index++;
-        if(index==noPlayers) {
+        if(index==currentGame.getNoPlayers()) {
             finishInput = true;
         }
     }
 
+
     public void setPlayersScore(){
-        for(int i=0;i<noPlayers;i++)
+        for(int i=0;i<currentGame.getNoPlayers();i++)
         {
-            if(playersList.get(i).getBet()==playersList.get(i).getResult())
+            if(currentGame.getPlayersList().get(i).getBet()==currentGame.getPlayersList().get(i).getResult())
             {
-                playersList.get(i).setScore(playersList.get(i).getScore()+5+playersList.get(i).getBet());
+                currentGame.getPlayersList().get(i).setScore(currentGame.getPlayersList().get(i).getScore()+5+currentGame.getPlayersList().get(i).getBet());
             }
             else{
-                playersList.get(i).setScore(playersList.get(i).getScore()-Math.abs(playersList.get(i).getBet()-playersList.get(i).getResult()));
+                currentGame.getPlayersList().get(i).setScore(currentGame.getPlayersList().get(i).getScore()-Math.abs(currentGame.getPlayersList().get(i).getBet()-currentGame.getPlayersList().get(i).getResult()));
             }
         }
     }
 
 
+=======
 }

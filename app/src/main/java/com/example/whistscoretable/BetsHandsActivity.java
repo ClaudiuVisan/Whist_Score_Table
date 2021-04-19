@@ -1,29 +1,31 @@
 package com.example.whistscoretable;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.Serializable;
-import java.util.ArrayList;
+
 
 public class BetsHandsActivity extends AppCompatActivity {
-    private ArrayList<Player> playersList;
+    private CurrentGame currentGame;
     private boolean isChecking = true;
     private int mCheckedId = R.id.btn0;
-    private int noPlayers, cnt=0, round, hands;
+    private int cnt=0;
     private boolean finishBet=false;
+    private int idList[]={R.id.btn0,R.id.btn1,R.id.btn2,R.id.btn3,R.id.btn4,R.id.btn5,R.id.btn6,R.id.btn7,R.id.btn8};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bets_hands);
-        playersList = (ArrayList<Player>) getIntent().getSerializableExtra("playerList");
-        noPlayers = (getIntent().getIntExtra("noPlayers",3));
+        currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
+        currentGame.setRound(currentGame.getRound()+1);
         RadioGroup mFirstGroup = (RadioGroup) findViewById(R.id.first_group);
         RadioGroup mSecondGroup = (RadioGroup) findViewById(R.id.second_group);
         RadioGroup mThirdGroup = (RadioGroup) findViewById(R.id.third_group);
@@ -63,8 +65,14 @@ public class BetsHandsActivity extends AppCompatActivity {
                 isChecking = true;
             }
         });
+        for(int i=currentGame.getHandsList()[currentGame.getRound()]+1;i<=8;i++)
+        {
+            RadioButton crtButton = (RadioButton)findViewById(idList[i]);
+            crtButton.setEnabled(false);
+            crtButton.setBackgroundResource(R.drawable.radio_disabled);
+        }
         TextView showName = (TextView) findViewById(R.id.showName);
-        showName.setText(playersList.get(0).getName());
+        showName.setText(currentGame.getPlayersList().get(0).getName());
     }
 
 
@@ -72,10 +80,9 @@ public class BetsHandsActivity extends AppCompatActivity {
             isChecked();
             if(finishBet) {
                 Intent checkBets = new Intent(this, CheckBetsActivity.class);
-                Bundle passPlayersList = new Bundle();
-                passPlayersList.putSerializable("playerList",(Serializable) playersList);
-                checkBets.putExtras(passPlayersList);
-                checkBets.putExtra("noPlayers",noPlayers);
+                Bundle passCurrentGame = new Bundle();
+                passCurrentGame.putSerializable("currentGame",(Serializable) currentGame);
+                checkBets.putExtras(passCurrentGame);
                 startActivity(checkBets);
             }
     }
@@ -113,14 +120,16 @@ public class BetsHandsActivity extends AppCompatActivity {
 
     public void setPlayerBet(int bet){
         TextView showName = (TextView) findViewById(R.id.showName);
-        if(cnt<noPlayers-1)
+        if(cnt<currentGame.getNoPlayers()-1)
         {
-            showName.setText(playersList.get(cnt+1).getName());
+            showName.setText(currentGame.getPlayersList().get(cnt+1).getName());
         }
-        playersList.get(cnt).setBet(bet);
+        currentGame.getPlayersList().get(cnt).setBet(bet);
         cnt++;
-        if(cnt==noPlayers) {
+        if(cnt==currentGame.getNoPlayers()) {
             finishBet = true;
         }
     }
+
+
 }

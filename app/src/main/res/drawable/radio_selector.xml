@@ -4,4 +4,7 @@
         android:drawable="@drawable/radio_selected"/>
     <item android:state_checked="false"
         android:drawable="@drawable/radio_normal"/>
+    <item android:state_enabled="false"
+        android:drawable="@drawable/radio_disabled"/>
+
 </selector>

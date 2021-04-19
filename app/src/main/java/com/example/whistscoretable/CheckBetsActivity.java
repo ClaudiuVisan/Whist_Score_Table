@@ -6,26 +6,23 @@ import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import java.io.Serializable;
-import java.util.ArrayList;
+
 
 public class CheckBetsActivity extends AppCompatActivity {
 
-    private ArrayList<Player> playersList;
+    private CurrentGame currentGame;
     private TableLayout betTable;
-    private int noPlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_bets);
-        playersList = (ArrayList<Player>) getIntent().getSerializableExtra("playerList");
-        noPlayers = (getIntent().getIntExtra("noPlayers",3));
-        createBetTable(noPlayers);
+        currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
+        createBetTable(currentGame.getNoPlayers());
     }
 
     public void createBetTable(int noPlayers)
@@ -42,8 +39,8 @@ public class CheckBetsActivity extends AppCompatActivity {
             rand.setLayoutParams(myParams);
             TextView casetNume = new TextView(this);
             TextView casetBet = new TextView(this);
-            casetNume.setText(playersList.get(i-1).getName());
-            casetBet.setText(String.valueOf(playersList.get(i-1).getBet()));
+            casetNume.setText(currentGame.getPlayersList().get(i-1).getName());
+            casetBet.setText(String.valueOf(currentGame.getPlayersList().get(i-1).getBet()));
             casetNume.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
             casetNume.setWidth(TypedValue.COMPLEX_UNIT_DIP*720);
             casetBet.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
@@ -56,10 +53,9 @@ public class CheckBetsActivity extends AppCompatActivity {
     public void onClickFinishCheck(View view)
     {
         Intent finishCheck = new Intent(this, InputResultsActivity.class);
-        Bundle passPlayersList = new Bundle();
-        passPlayersList.putSerializable("playerList",(Serializable) playersList);
-        finishCheck.putExtras(passPlayersList);
-        finishCheck.putExtra("noPlayers",noPlayers);
+        Bundle passCurrentGame = new Bundle();
+        passCurrentGame.putSerializable("currentGame",(Serializable) currentGame);
+        finishCheck.putExtras(passCurrentGame);
         startActivity(finishCheck);
     }
 }
