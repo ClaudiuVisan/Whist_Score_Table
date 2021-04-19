@@ -4,16 +4,22 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class CurrentGame implements Serializable {
-    private int noHands, round, noPlayers, noRounds;
+    private int noHands, round, noPlayers, noRounds, handsList[];
     private ArrayList<Player> playersList = new ArrayList<>();
 
-    public int getNoHands() {
+    CurrentGame()
+    {
+        round=0;
+        noHands=8;
+    }
+
+   /* public int getNoHands() {
         return noHands;
     }
 
     public void setNoHands(int noHands) {
         this.noHands = noHands;
-    }
+    }*/
 
     public int getRound() {
         return round;
@@ -47,5 +53,30 @@ public class CurrentGame implements Serializable {
         this.playersList = playersList;
     }
 
+    public void rotatePlayers()
+    {
+        Player x = playersList.get(0);
+        for(int i=0;i<noPlayers-1;i++)
+        {
+            playersList.set(i,playersList.get(i+1));
+        }
+        playersList.set(noPlayers-1,x);
+    }
 
+    public void createHands()
+    {
+        handsList = new int[noRounds+1];
+        for(int i=0;i<=noRounds;i++)
+        {
+            if(i<=noPlayers) { handsList[i] = 8; }
+            else if(i<=noPlayers+6) { handsList[i] = 8-(i-noPlayers); }
+            else if(i<=noPlayers*2+6) { handsList[i] = 1; }
+            else if(i<=noPlayers*2+12) { handsList[i] = 1 + (i-2*noPlayers-6); }
+            else { handsList[i] = 8; }
+        }
+    }
+
+    public int[] getHandsList() {
+        return handsList;
+    }
 }

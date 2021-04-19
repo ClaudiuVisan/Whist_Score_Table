@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="radioColor">#e36bae</color>
     <color name="radioSelected">#f8a1d1</color>
+    <color name="radioDisabled">#C0BCBB</color>
 </resources>

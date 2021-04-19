@@ -27,6 +27,10 @@ public class ScoreTableActivity extends AppCompatActivity {
         placeBets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(currentGame.getRound()>0)
+                {
+                    currentGame.rotatePlayers();
+                }
                 Intent bets = new Intent(ScoreTableActivity.this, BetsHandsActivity.class);
                 Bundle passCurrentGame = new Bundle();
                 passCurrentGame.putSerializable("currentGame",(Serializable) currentGame);

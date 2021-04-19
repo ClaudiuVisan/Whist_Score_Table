@@ -2,8 +2,11 @@ package com.example.whistscoretable;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +19,7 @@ public class BetsHandsActivity extends AppCompatActivity {
     private int mCheckedId = R.id.btn0;
     private int cnt=0;
     private boolean finishBet=false;
+    private int idList[]={R.id.btn0,R.id.btn1,R.id.btn2,R.id.btn3,R.id.btn4,R.id.btn5,R.id.btn6,R.id.btn7,R.id.btn8};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +65,12 @@ public class BetsHandsActivity extends AppCompatActivity {
                 isChecking = true;
             }
         });
+        for(int i=currentGame.getHandsList()[currentGame.getRound()]+1;i<=8;i++)
+        {
+            RadioButton crtButton = (RadioButton)findViewById(idList[i]);
+            crtButton.setEnabled(false);
+            crtButton.setBackgroundResource(R.drawable.radio_disabled);
+        }
         TextView showName = (TextView) findViewById(R.id.showName);
         showName.setText(currentGame.getPlayersList().get(0).getName());
     }
@@ -120,4 +130,6 @@ public class BetsHandsActivity extends AppCompatActivity {
             finishBet = true;
         }
     }
+
+
 }
