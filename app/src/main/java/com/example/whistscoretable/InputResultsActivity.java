@@ -15,7 +15,9 @@ public class InputResultsActivity extends AppCompatActivity {
     private CurrentGame currentGame;
     private boolean isChecking = true;
     private int mCheckedId = R.id.btn00;
+
     private int index =0,result=0;
+
     private boolean finishInput =false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +133,7 @@ public class InputResultsActivity extends AppCompatActivity {
         }
     }
 
+
     public void setPlayersScore(){
         for(int i=0;i<currentGame.getNoPlayers();i++)
         {
@@ -145,4 +148,5 @@ public class InputResultsActivity extends AppCompatActivity {
     }
 
 
+=======
 }
