@@ -147,6 +147,4 @@ public class InputResultsActivity extends AppCompatActivity {
         }
     }
 
-
-=======
 }

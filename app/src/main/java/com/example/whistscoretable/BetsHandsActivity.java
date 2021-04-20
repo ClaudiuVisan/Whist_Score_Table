@@ -11,6 +11,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.Serializable;
+import java.util.Arrays;
 
 
 public class BetsHandsActivity extends AppCompatActivity {
@@ -25,7 +26,7 @@ public class BetsHandsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bets_hands);
         currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
-        currentGame.setRound(currentGame.getRound()+1);
+        currentGame.setRound(currentGame.getRound() + 1);
         RadioGroup mFirstGroup = (RadioGroup) findViewById(R.id.first_group);
         RadioGroup mSecondGroup = (RadioGroup) findViewById(R.id.second_group);
         RadioGroup mThirdGroup = (RadioGroup) findViewById(R.id.third_group);
@@ -65,7 +66,7 @@ public class BetsHandsActivity extends AppCompatActivity {
                 isChecking = true;
             }
         });
-        for(int i=currentGame.getHandsList()[currentGame.getRound()]+1;i<=8;i++)
+       for(int i=currentGame.getHandsList()[currentGame.getRound()]+1;i<=8;i++)
         {
             RadioButton crtButton = (RadioButton)findViewById(idList[i]);
             crtButton.setEnabled(false);
@@ -77,14 +78,14 @@ public class BetsHandsActivity extends AppCompatActivity {
 
 
     public void onClickPlaceBet(View view) {
-            isChecked();
-            if(finishBet) {
-                Intent checkBets = new Intent(this, CheckBetsActivity.class);
-                Bundle passCurrentGame = new Bundle();
-                passCurrentGame.putSerializable("currentGame",(Serializable) currentGame);
-                checkBets.putExtras(passCurrentGame);
-                startActivity(checkBets);
-            }
+        isChecked();
+        if(finishBet) {
+            Intent checkBets = new Intent(this, CheckBetsActivity.class);
+            Bundle passCurrentGame = new Bundle();
+            passCurrentGame.putSerializable("currentGame",(Serializable) currentGame);
+            checkBets.putExtras(passCurrentGame);
+            startActivity(checkBets);
+        }
     }
 
     public void isChecked(){
