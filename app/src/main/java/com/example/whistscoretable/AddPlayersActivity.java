@@ -121,6 +121,7 @@ public class AddPlayersActivity extends AppCompatActivity {
         currentGame.setNoRounds(12+3*noPlayers);
         currentGame.setNoPlayers(noPlayers);
         currentGame.createHands();
+
         passCurrentGame.putSerializable("currentGame",(Serializable) currentGame);
         return passCurrentGame;
     }

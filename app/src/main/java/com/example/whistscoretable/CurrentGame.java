@@ -79,4 +79,6 @@ public class CurrentGame implements Serializable {
     public int[] getHandsList() {
         return handsList;
     }
+    public int getNoHands() { return handsList[round]; }
+
 }

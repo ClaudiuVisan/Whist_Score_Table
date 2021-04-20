@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,10 +16,9 @@ public class InputResultsActivity extends AppCompatActivity {
     private CurrentGame currentGame;
     private boolean isChecking = true;
     private int mCheckedId = R.id.btn00;
-
     private int index =0,result=0;
-
     private boolean finishInput =false;
+    private int[] idList={R.id.btn00,R.id.btn01,R.id.btn02,R.id.btn03,R.id.btn04,R.id.btn05,R.id.btn06,R.id.btn07,R.id.btn08};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +63,7 @@ public class InputResultsActivity extends AppCompatActivity {
                 isChecking = true;
             }
         });
+        disableResults();
         TextView showName = (TextView) findViewById(R.id.showResultName);
         showName.setText(currentGame.getPlayersList().get(0).getName());
     }
@@ -127,12 +128,13 @@ public class InputResultsActivity extends AppCompatActivity {
             showName.setText(currentGame.getPlayersList().get(index +1).getName());
         }
         currentGame.getPlayersList().get(index).setResult(result);
+        if(index<currentGame.getNoPlayers()-1)
+            { disableCrtResult(); }
         index++;
         if(index==currentGame.getNoPlayers()) {
             finishInput = true;
         }
     }
-
 
     public void setPlayersScore(){
         for(int i=0;i<currentGame.getNoPlayers();i++)
@@ -144,6 +146,44 @@ public class InputResultsActivity extends AppCompatActivity {
             else{
                 currentGame.getPlayersList().get(i).setScore(currentGame.getPlayersList().get(i).getScore()-Math.abs(currentGame.getPlayersList().get(i).getBet()-currentGame.getPlayersList().get(i).getResult()));
             }
+        }
+    }
+
+    public void disableResults(){
+        int[] idList={R.id.btn00,R.id.btn01,R.id.btn02,R.id.btn03,R.id.btn04,R.id.btn05,R.id.btn06,R.id.btn07,R.id.btn08};
+        for(int i=currentGame.getHandsList()[currentGame.getRound()]+1;i<=8;i++)
+        {
+            RadioButton crtButton = (RadioButton)findViewById(idList[i]);
+            crtButton.setEnabled(false);
+            crtButton.setBackgroundResource(R.drawable.radio_disabled);
+        }
+    }
+
+
+    public void disableCrtResult()
+    {
+        int limit=currentGame.getNoHands();
+        for(int i=0;i<=index;i++)
+        {
+            limit=limit-currentGame.getPlayersList().get(i).getResult();
+        }
+        if(index<currentGame.getNoPlayers()-2)
+        {
+            for(int i=limit+1;i<=currentGame.getNoHands();i++)
+            {
+                RadioButton crtButton = (RadioButton)findViewById(idList[i]);
+                crtButton.setEnabled(false);
+                crtButton.setBackgroundResource(R.drawable.radio_disabled);
+            }
+        }
+        else for(int i=0;i<=currentGame.getNoHands();i++)
+        {
+           if(i!=limit)
+           {
+               RadioButton crtButton = (RadioButton)findViewById(idList[i]);
+               crtButton.setEnabled(false);
+               crtButton.setBackgroundResource(R.drawable.radio_disabled);
+           }
         }
     }
 
