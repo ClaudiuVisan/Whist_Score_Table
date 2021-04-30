@@ -16,12 +16,15 @@ import java.io.Serializable;
 public class ScoreTableActivity extends AppCompatActivity {
     private CurrentGame currentGame;
     private TableLayout scoreTable;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
         currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
+        if(currentGame.getRound()==currentGame.getNoRounds())
+        {
+            currentGame.setGameFinish(true);
+        }
         setScoreTable(currentGame.getNoPlayers());
         Button placeBets = (Button) findViewById(R.id.placeBets);
         placeBets.setOnClickListener(new View.OnClickListener() {
@@ -31,11 +34,7 @@ public class ScoreTableActivity extends AppCompatActivity {
                 {
                     currentGame.rotatePlayers();
                 }
-                Intent bets = new Intent(ScoreTableActivity.this, BetsHandsActivity.class);
-                Bundle passCurrentGame = new Bundle();
-                passCurrentGame.putSerializable("currentGame",(Serializable) currentGame);
-                bets.putExtras(passCurrentGame);
-                startActivity(bets);
+                checkActivity();
             }
         });
 
@@ -58,7 +57,7 @@ public class ScoreTableActivity extends AppCompatActivity {
            casetNume.setText(currentGame.getPlayersList().get(i-1).getName());
            casetScor.setText(String.valueOf(currentGame.getPlayersList().get(i-1).getScore()));
            casetNume.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
-           casetNume.setWidth(TypedValue.COMPLEX_UNIT_DIP*720);
+           casetNume.setWidth(TypedValue.COMPLEX_UNIT_DIP*41);
            casetScor.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
            casetScor.setGravity(Gravity.RIGHT);
            rand.addView(casetNume,myParams);
@@ -66,4 +65,21 @@ public class ScoreTableActivity extends AppCompatActivity {
            scoreTable.addView(rand,myParams);
        }
    }
+
+   public void checkActivity()
+   {
+       Intent bets = new Intent(ScoreTableActivity.this, BetsHandsActivity.class);
+       Intent finalScore=new Intent(ScoreTableActivity.this,FinalScoreActivity.class);
+       Bundle passCurrentGame = new Bundle();
+       passCurrentGame.putSerializable("currentGame",(Serializable) currentGame);
+       bets.putExtras(passCurrentGame);
+       finalScore.putExtras(passCurrentGame);
+       startActivity(finalScore);
+      /* if(currentGame.isGameFinish()){
+           startActivity(finalScore);
+       }else{
+           startActivity(bets);
+       }*/
+   }
 }
+
