@@ -74,12 +74,11 @@ public class ScoreTableActivity extends AppCompatActivity {
        passCurrentGame.putSerializable("currentGame",(Serializable) currentGame);
        bets.putExtras(passCurrentGame);
        finalScore.putExtras(passCurrentGame);
-       startActivity(finalScore);
-      /* if(currentGame.isGameFinish()){
+       if(currentGame.isGameFinish()){
            startActivity(finalScore);
        }else{
            startActivity(bets);
-       }*/
+       }
    }
 }
 
