@@ -1,8 +1,9 @@
 package com.example.whistscoretable;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -11,22 +12,30 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.util.Comparator;
+
 public class FinalScoreActivity extends AppCompatActivity {
 
     private CurrentGame currentGame;
-    private TableLayout finalScoreTable;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final_score);
         currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
-        setFinalScoreTable(currentGame.getNoPlayers());
+        currentGame.getPlayersList().sort(new Comparator<Player>() {
+            @Override
+            public int compare(Player p1, Player p2) {
+                return Integer.compare(p2.getScore(), p1.getScore());
+            }
+        });
+        setFinalScoreTable();
     }
 
-    public void setFinalScoreTable(int noPlayers)
+    public void setFinalScoreTable()
     {
-        finalScoreTable = (TableLayout) findViewById(R.id.tabelFinal);
+        TableLayout finalScoreTable = findViewById(R.id.tabelFinal);
         finalScoreTable.setVerticalGravity(Gravity.CENTER_VERTICAL);
         finalScoreTable.setColumnStretchable(0,true);
         finalScoreTable.setColumnStretchable(1,true);
@@ -43,7 +52,7 @@ public class FinalScoreActivity extends AppCompatActivity {
             casetNume.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
             casetNume.setWidth(TypedValue.COMPLEX_UNIT_DIP*41);
             casetScor.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
-            casetScor.setGravity(Gravity.RIGHT);
+            casetScor.setGravity(Gravity.END);
             rand.addView(casetNume,myParams);
             rand.addView(casetScor,myParams);
             finalScoreTable.addView(rand,myParams);

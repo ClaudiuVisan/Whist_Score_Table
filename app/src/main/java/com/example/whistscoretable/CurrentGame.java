@@ -4,7 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class CurrentGame implements Serializable {
-    private int noHands, round, noPlayers, noRounds, handsList[];
+    private final int noHands;
+    private int round;
+    private int noPlayers;
+    private int noRounds;
+    private int handsList[];
     private ArrayList<Player> playersList = new ArrayList<>();
     private boolean gameFinish;
 

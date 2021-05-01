@@ -9,13 +9,11 @@ import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import java.io.Serializable;
 
 
 public class CheckBetsActivity extends AppCompatActivity {
 
     private CurrentGame currentGame;
-    private TableLayout betTable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +25,7 @@ public class CheckBetsActivity extends AppCompatActivity {
 
     public void createBetTable(int noPlayers)
     {
-        betTable = (TableLayout) findViewById(R.id.betTable);
+        TableLayout betTable = findViewById(R.id.betTable);
         betTable.setVerticalGravity(Gravity.CENTER_VERTICAL);
         betTable.setColumnStretchable(0,true);
         betTable.setColumnStretchable(1,true);
@@ -44,7 +42,7 @@ public class CheckBetsActivity extends AppCompatActivity {
             casetNume.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
             casetNume.setWidth(TypedValue.COMPLEX_UNIT_DIP*720);
             casetBet.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
-            casetBet.setGravity(Gravity.RIGHT);
+            casetBet.setGravity(Gravity.END);
             rand.addView(casetNume,myParams);
             rand.addView(casetBet,myParams);
             betTable.addView(rand,myParams);
@@ -54,7 +52,7 @@ public class CheckBetsActivity extends AppCompatActivity {
     {
         Intent finishCheck = new Intent(this, InputResultsActivity.class);
         Bundle passCurrentGame = new Bundle();
-        passCurrentGame.putSerializable("currentGame",(Serializable) currentGame);
+        passCurrentGame.putSerializable("currentGame",currentGame);
         finishCheck.putExtras(passCurrentGame);
         startActivity(finishCheck);
     }
