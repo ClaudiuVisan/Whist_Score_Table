@@ -79,6 +79,8 @@ public class InputResultsActivity extends AppCompatActivity {
 
     public void onClickInputResult(View view) {
         isChecked();
+        Button setRes=findViewById(R.id.setResult);
+        setRes.setEnabled(false);
     if(finishInput) {
             setPlayersScore();
             Intent viewScore = new Intent(this, ScoreTableActivity.class);
