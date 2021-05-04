@@ -28,7 +28,7 @@
 
             <RadioButton
                 android:id="@+id/threePlayers"
-                android:layout_width="66dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:background="@drawable/radio_selector"
@@ -36,15 +36,15 @@
                 android:checked="false"
                 android:elevation="4dp"
                 android:onClick="onClickPlayersNo"
-                android:padding="8dp"
-                android:text="3"
+                android:padding="6dp"
+                android:text=" 3 "
                 android:textAlignment="center"
                 android:textColor="@drawable/text_color"
                 android:textSize="30sp" />
 
             <RadioButton
                 android:id="@+id/fourPlayers"
-                android:layout_width="66dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:background="@drawable/radio_selector"
@@ -53,14 +53,14 @@
                 android:elevation="4dp"
                 android:onClick="onClickPlayersNo"
                 android:padding="6dp"
-                android:text="4"
+                android:text=" 4 "
                 android:textAlignment="center"
                 android:textColor="@drawable/text_color"
                 android:textSize="30sp" />
 
             <RadioButton
                 android:id="@+id/fivePlayers"
-                android:layout_width="66dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:background="@drawable/radio_selector"
@@ -69,24 +69,23 @@
                 android:elevation="4dp"
                 android:onClick="onClickPlayersNo"
                 android:padding="6dp"
-                android:text="5"
+                android:text=" 5 "
                 android:textAlignment="center"
                 android:textColor="@drawable/text_color"
                 android:textSize="30sp" />
 
             <RadioButton
                 android:id="@+id/sixPlayers"
-                android:layout_width="66dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:layout_weight="10"
                 android:background="@drawable/radio_selector"
                 android:button="@android:color/transparent"
                 android:checked="false"
                 android:elevation="4dp"
                 android:onClick="onClickPlayersNo"
                 android:padding="6dp"
-                android:text="6"
+                android:text=" 6 "
                 android:textAlignment="center"
                 android:textColor="@drawable/text_color"
                 android:textSize="30sp" />
