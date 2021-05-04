@@ -26,7 +26,7 @@ public class InputResultsActivity extends AppCompatActivity {
         Button setRes=findViewById(R.id.setResult);
         setRes.setEnabled(false);
         currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
-        if(currentGame.getRound()==2)
+        if(currentGame.getRound()==currentGame.getNoRounds())
         {
             currentGame.setGameFinish(true);
         }
