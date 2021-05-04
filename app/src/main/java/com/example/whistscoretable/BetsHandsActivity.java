@@ -81,8 +81,6 @@ public class BetsHandsActivity extends AppCompatActivity {
 
     public void onClickPlaceBet(View view) {
         isChecked();
-        Button placeBet= findViewById(R.id.setBet);
-        placeBet.setEnabled(false);
         if(finishBet) {
             Intent checkBets = new Intent(this, CheckBetsActivity.class);
             Bundle passCurrentGame = new Bundle();
@@ -90,6 +88,8 @@ public class BetsHandsActivity extends AppCompatActivity {
             checkBets.putExtras(passCurrentGame);
             startActivity(checkBets);
         }
+        Button placeBet= findViewById(R.id.setBet);
+        placeBet.setEnabled(false);
     }
 
     public void isChecked(){

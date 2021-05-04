@@ -79,9 +79,7 @@ public class InputResultsActivity extends AppCompatActivity {
 
     public void onClickInputResult(View view) {
         isChecked();
-        Button setRes=findViewById(R.id.setResult);
-        setRes.setEnabled(false);
-    if(finishInput) {
+        if(finishInput) {
             setPlayersScore();
             Intent viewScore = new Intent(this, ScoreTableActivity.class);
             Bundle passCurrentGame = new Bundle();
@@ -89,6 +87,8 @@ public class InputResultsActivity extends AppCompatActivity {
             viewScore.putExtras(passCurrentGame);
             startActivity(viewScore);
         }
+        Button setRes=findViewById(R.id.setResult);
+        setRes.setEnabled(false);
     }
 
     public void isChecked(){
