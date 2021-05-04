@@ -40,7 +40,7 @@ public class CheckBetsActivity extends AppCompatActivity {
             casetNume.setText(currentGame.getPlayersList().get(i-1).getName());
             casetBet.setText(String.valueOf(currentGame.getPlayersList().get(i-1).getBet()));
             casetNume.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
-            casetNume.setWidth(TypedValue.COMPLEX_UNIT_DIP*720);
+            casetNume.setWidth(TypedValue.COMPLEX_UNIT_DIP*41);
             casetBet.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
             casetBet.setGravity(Gravity.END);
             rand.addView(casetNume,myParams);
