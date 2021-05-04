@@ -19,10 +19,6 @@ public class ScoreTableActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
         currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
-        if(currentGame.getRound()==currentGame.getNoRounds())
-        {
-            currentGame.setGameFinish(true);
-        }
         setScoreTable();
         Button placeBets = findViewById(R.id.placeBets);
         placeBets.setOnClickListener(v -> {
@@ -64,16 +60,10 @@ public class ScoreTableActivity extends AppCompatActivity {
    public void checkActivity()
    {
        Intent bets = new Intent(ScoreTableActivity.this, BetsHandsActivity.class);
-       Intent finalScore=new Intent(ScoreTableActivity.this,FinalScoreActivity.class);
        Bundle passCurrentGame = new Bundle();
        passCurrentGame.putSerializable("currentGame", currentGame);
        bets.putExtras(passCurrentGame);
-       finalScore.putExtras(passCurrentGame);
-       if(currentGame.isGameFinish()){
-           startActivity(finalScore);
-       }else{
-           startActivity(bets);
-       }
+       startActivity(bets);
    }
 }
 

@@ -26,6 +26,10 @@ public class InputResultsActivity extends AppCompatActivity {
         Button setRes=findViewById(R.id.setResult);
         setRes.setEnabled(false);
         currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
+        if(currentGame.getRound()==2)
+        {
+            currentGame.setGameFinish(true);
+        }
         RadioGroup mFirstGroup = findViewById(R.id.first_groupRes);
         RadioGroup mSecondGroup = findViewById(R.id.second_groupRes);
         RadioGroup mThirdGroup =  findViewById(R.id.third_groupRes);
@@ -82,10 +86,16 @@ public class InputResultsActivity extends AppCompatActivity {
         if(finishInput) {
             setPlayersScore();
             Intent viewScore = new Intent(this, ScoreTableActivity.class);
+            Intent finalScore= new Intent(this,FinalScoreActivity.class);
             Bundle passCurrentGame = new Bundle();
             passCurrentGame.putSerializable("currentGame", currentGame);
             viewScore.putExtras(passCurrentGame);
-            startActivity(viewScore);
+            finalScore.putExtras(passCurrentGame);
+            if(currentGame.isGameFinish()){
+                startActivity(finalScore);
+            }else {
+                startActivity(viewScore);
+            }
         }
         Button setRes=findViewById(R.id.setResult);
         setRes.setEnabled(false);
