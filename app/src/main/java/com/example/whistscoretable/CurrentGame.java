@@ -4,20 +4,26 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class CurrentGame implements Serializable {
-    private int noHands, round, noPlayers, noRounds, handsList[];
+    private final int noHands;
+    private int round;
+    private int noPlayers;
+    private int noRounds;
+    private int handsList[];
     private ArrayList<Player> playersList = new ArrayList<>();
+    private boolean gameFinish;
 
     CurrentGame()
     {
         round=0;
         noHands=8;
+        gameFinish=false;
     }
 
    /* public int getNoHands() {
         return noHands;
-    }
+    }*/
 
-    public void setNoHands(int noHands) {
+  /*  public void setNoHands(int noHands) {
         this.noHands = noHands;
     }*/
 
@@ -79,4 +85,14 @@ public class CurrentGame implements Serializable {
     public int[] getHandsList() {
         return handsList;
     }
+    public int getNoHands() { return handsList[round]; }
+
+    public boolean isGameFinish() {
+        return gameFinish;
+    }
+
+    public void setGameFinish(boolean gameFinish) {
+        this.gameFinish = gameFinish;
+    }
+
 }

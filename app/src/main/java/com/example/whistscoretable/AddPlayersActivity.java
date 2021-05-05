@@ -8,10 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class AddPlayersActivity extends AppCompatActivity {
@@ -27,7 +24,7 @@ public class AddPlayersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_players);
-        Button startGame= (Button) findViewById(R.id.startGame);
+        Button startGame= findViewById(R.id.startGame);
         startGame.setEnabled(false);
     }
 
@@ -56,14 +53,14 @@ public class AddPlayersActivity extends AppCompatActivity {
                 }
         }
         addPlayers();
-        Button startGame = (Button) findViewById(R.id.startGame);
+        Button startGame = findViewById(R.id.startGame);
         startGame.setEnabled(true);
     }
 
     public void onClickStartGame(View view){
         Intent startGame = new Intent(AddPlayersActivity.this, ScoreTableActivity.class);
         startGame.putExtras(setGameStatus());
-        if(nameNotSet==true)
+        if(nameNotSet)
         {
             Toast.makeText(this, "Please enter players names", Toast.LENGTH_SHORT).show();
         }else {
@@ -76,7 +73,7 @@ public class AddPlayersActivity extends AppCompatActivity {
         {
             for(int i=1;i<=6;i++)
             {
-                EditText removePlayerName = (EditText) findViewById(R.id.playerName+i);
+                EditText removePlayerName = findViewById(R.id.playerName+i);
                 addPlayersLayout.removeView(removePlayerName);
             }
         }
@@ -101,7 +98,7 @@ public class AddPlayersActivity extends AppCompatActivity {
         for(int i=1;i<=noPlayers;i++)
         {
             Player newPlayer = new Player();
-            EditText caset = (EditText) findViewById(R.id.playerName+i);
+            EditText caset = findViewById(R.id.playerName+i);
             newPlayer.setName(caset.getText().toString());
             if(caset.getText().toString().trim().length() == 0)
             {
@@ -119,9 +116,10 @@ public class AddPlayersActivity extends AppCompatActivity {
         setPlayerNames();
         Bundle passCurrentGame = new Bundle();
         currentGame.setNoRounds(12+3*noPlayers);
-        currentGame.createHands();
         currentGame.setNoPlayers(noPlayers);
-        passCurrentGame.putSerializable("currentGame",(Serializable) currentGame);
+        currentGame.createHands();
+
+        passCurrentGame.putSerializable("currentGame",currentGame);
         return passCurrentGame;
     }
 }

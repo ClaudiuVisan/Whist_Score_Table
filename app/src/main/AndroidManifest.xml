@@ -9,12 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WhistScoreTable">
-        <activity android:name=".InputResultsActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".CheckBetsActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".BetsHandsActivity"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".LoadGameActivity"></activity>
+        <activity android:name=".FinalScoreActivity" />
+        <activity
+            android:name=".InputResultsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CheckBetsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".BetsHandsActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ScoreTableActivity"
             android:parentActivityName=".AddPlayersActivity"

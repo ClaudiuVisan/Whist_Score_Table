@@ -4,10 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.io.Serializable;
 
 
 public class InputResultsActivity extends AppCompatActivity {
@@ -15,18 +16,23 @@ public class InputResultsActivity extends AppCompatActivity {
     private CurrentGame currentGame;
     private boolean isChecking = true;
     private int mCheckedId = R.id.btn00;
-
     private int index =0,result=0;
-
     private boolean finishInput =false;
+    private final int[] idList={R.id.btn00,R.id.btn01,R.id.btn02,R.id.btn03,R.id.btn04,R.id.btn05,R.id.btn06,R.id.btn07,R.id.btn08};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_results);
+        Button setRes=findViewById(R.id.setResult);
+        setRes.setEnabled(false);
         currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
-        RadioGroup mFirstGroup = (RadioGroup) findViewById(R.id.first_groupRes);
-        RadioGroup mSecondGroup = (RadioGroup) findViewById(R.id.second_groupRes);
-        RadioGroup mThirdGroup = (RadioGroup) findViewById(R.id.third_groupRes);
+        if(currentGame.getRound()==currentGame.getNoRounds())
+        {
+            currentGame.setGameFinish(true);
+        }
+        RadioGroup mFirstGroup = findViewById(R.id.first_groupRes);
+        RadioGroup mSecondGroup = findViewById(R.id.second_groupRes);
+        RadioGroup mThirdGroup =  findViewById(R.id.third_groupRes);
         mFirstGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -37,6 +43,8 @@ public class InputResultsActivity extends AppCompatActivity {
                     mCheckedId = checkedId;
                 }
                 isChecking = true;
+                Button setRes=findViewById(R.id.setResult);
+                setRes.setEnabled(true);
             }
         });
         mSecondGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -49,6 +57,8 @@ public class InputResultsActivity extends AppCompatActivity {
                     mCheckedId = checkedId;
                 }
                 isChecking = true;
+                Button setRes=findViewById(R.id.setResult);
+                setRes.setEnabled(true);
             }
         });
         mThirdGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -61,23 +71,34 @@ public class InputResultsActivity extends AppCompatActivity {
                     mCheckedId = checkedId;
                 }
                 isChecking = true;
+                Button setRes=findViewById(R.id.setResult);
+                setRes.setEnabled(true);
             }
         });
-        TextView showName = (TextView) findViewById(R.id.showResultName);
+        disableResults();
+        TextView showName =findViewById(R.id.showResultName);
         showName.setText(currentGame.getPlayersList().get(0).getName());
     }
 
 
     public void onClickInputResult(View view) {
         isChecked();
-    if(finishInput) {
+        if(finishInput) {
             setPlayersScore();
             Intent viewScore = new Intent(this, ScoreTableActivity.class);
+            Intent finalScore= new Intent(this,FinalScoreActivity.class);
             Bundle passCurrentGame = new Bundle();
-            passCurrentGame.putSerializable("currentGame",(Serializable) currentGame);
+            passCurrentGame.putSerializable("currentGame", currentGame);
             viewScore.putExtras(passCurrentGame);
-            startActivity(viewScore);
+            finalScore.putExtras(passCurrentGame);
+            if(currentGame.isGameFinish()){
+                startActivity(finalScore);
+            }else {
+                startActivity(viewScore);
+            }
         }
+        Button setRes=findViewById(R.id.setResult);
+        setRes.setEnabled(false);
     }
 
     public void isChecked(){
@@ -121,18 +142,19 @@ public class InputResultsActivity extends AppCompatActivity {
     }
 
     public void setPlayerResult(){
-        TextView showName = (TextView) findViewById(R.id.showResultName);
+        TextView showName = findViewById(R.id.showResultName);
         if(index <currentGame.getNoPlayers()-1)
         {
             showName.setText(currentGame.getPlayersList().get(index +1).getName());
         }
         currentGame.getPlayersList().get(index).setResult(result);
+        if(index<currentGame.getNoPlayers()-1)
+            { disableCrtResult(); }
         index++;
         if(index==currentGame.getNoPlayers()) {
             finishInput = true;
         }
     }
-
 
     public void setPlayersScore(){
         for(int i=0;i<currentGame.getNoPlayers();i++)
@@ -147,6 +169,42 @@ public class InputResultsActivity extends AppCompatActivity {
         }
     }
 
+    public void disableResults(){
+        int[] idList={R.id.btn00,R.id.btn01,R.id.btn02,R.id.btn03,R.id.btn04,R.id.btn05,R.id.btn06,R.id.btn07,R.id.btn08};
+        for(int i=currentGame.getHandsList()[currentGame.getRound()]+1;i<=8;i++)
+        {
+            RadioButton crtButton = findViewById(idList[i]);
+            crtButton.setEnabled(false);
+            crtButton.setBackgroundResource(R.drawable.radio_disabled);
+        }
+    }
 
-=======
+
+    public void disableCrtResult()
+    {
+        int limit=currentGame.getNoHands();
+        for(int i=0;i<=index;i++)
+        {
+            limit=limit-currentGame.getPlayersList().get(i).getResult();
+        }
+        if(index<currentGame.getNoPlayers()-2)
+        {
+            for(int i=limit+1;i<=currentGame.getNoHands();i++)
+            {
+                RadioButton crtButton = findViewById(idList[i]);
+                crtButton.setEnabled(false);
+                crtButton.setBackgroundResource(R.drawable.radio_disabled);
+            }
+        }
+        else for(int i=0;i<=currentGame.getNoHands();i++)
+        {
+           if(i!=limit)
+           {
+               RadioButton crtButton = findViewById(idList[i]);
+               crtButton.setEnabled(false);
+               crtButton.setBackgroundResource(R.drawable.radio_disabled);
+           }
+        }
+    }
+
 }
