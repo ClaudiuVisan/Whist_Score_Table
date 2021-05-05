@@ -1,8 +1,11 @@
 package com.example.whistscoretable;
 
+import androidx.room.Entity;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
+@Entity
 public class CurrentGame implements Serializable {
     private final int noHands;
     private int round;
