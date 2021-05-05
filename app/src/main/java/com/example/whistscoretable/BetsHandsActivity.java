@@ -78,11 +78,6 @@ public class BetsHandsActivity extends AppCompatActivity {
         showName.setText(currentGame.getPlayersList().get(0).getName());
     }
 
-   /* @Override
-    public void onBackPressed(){
-        System.out.println("WAGNER E FATALAU");
-    }*/
-
     public void onClickPlaceBet(View view) {
         isChecked();
         if(finishBet) {
