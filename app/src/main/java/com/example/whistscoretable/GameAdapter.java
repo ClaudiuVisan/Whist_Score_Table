@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder>{
-    ArrayList<String> games;
+    ArrayList<CurrentGame> games;
 
-    public GameAdapter(ArrayList<String> games) {
+    public GameAdapter(ArrayList<CurrentGame> games) {
         this.games = games;
     }
 
@@ -30,7 +30,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull GameAdapter.ViewHolder holder, int position) {
-        holder.gameName.setText(games.get(position));
+        holder.gameName.setText(games.get(position).getName());
         holder.gameRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

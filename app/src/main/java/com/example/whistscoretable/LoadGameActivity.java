@@ -12,7 +12,7 @@ public class LoadGameActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
-    ArrayList<String> games;
+    ArrayList<CurrentGame> games;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,9 @@ public class LoadGameActivity extends AppCompatActivity {
         games = new ArrayList<>();
         for(int i=0;i<=100;i++)
         {
-            games.add("Game " + i);
+            CurrentGame xgame = new CurrentGame();
+            xgame.setName("Game " + i);
+            games.add(xgame);
         }
         adapter = new GameAdapter(games);
         recyclerView.setAdapter(adapter);
