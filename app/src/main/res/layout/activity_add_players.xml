@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/myLayout"
-    tools:context=".AddPlayersActivity">
+    tools:context=".AddPlayersActivity"
+    android:background="@drawable/background_color_bej">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
