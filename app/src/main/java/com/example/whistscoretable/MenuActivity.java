@@ -22,6 +22,8 @@ public class MenuActivity extends AppCompatActivity {
     public void onClickLoadGame(View view){
         // Implementare activity load game
         // TO DO
+        Intent loadGame = new Intent (this, LoadGameActivity.class);
+        startActivity(loadGame);
     }
 }
 

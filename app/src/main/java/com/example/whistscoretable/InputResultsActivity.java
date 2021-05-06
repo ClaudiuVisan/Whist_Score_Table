@@ -19,6 +19,7 @@ public class InputResultsActivity extends AppCompatActivity {
     private int index =0,result=0;
     private boolean finishInput =false;
     private final int[] idList={R.id.btn00,R.id.btn01,R.id.btn02,R.id.btn03,R.id.btn04,R.id.btn05,R.id.btn06,R.id.btn07,R.id.btn08};
+    private RadioGroup mFirstGroup, mSecondGroup, mThirdGroup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +31,9 @@ public class InputResultsActivity extends AppCompatActivity {
         {
             currentGame.setGameFinish(true);
         }
-        RadioGroup mFirstGroup = findViewById(R.id.first_groupRes);
-        RadioGroup mSecondGroup = findViewById(R.id.second_groupRes);
-        RadioGroup mThirdGroup =  findViewById(R.id.third_groupRes);
+        mFirstGroup = findViewById(R.id.first_groupRes);
+        mSecondGroup = findViewById(R.id.second_groupRes);
+        mThirdGroup =  findViewById(R.id.third_groupRes);
         mFirstGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -97,6 +98,9 @@ public class InputResultsActivity extends AppCompatActivity {
                 startActivity(viewScore);
             }
         }
+        mFirstGroup.clearCheck();
+        mSecondGroup.clearCheck();
+        mThirdGroup.clearCheck();
         Button setRes=findViewById(R.id.setResult);
         setRes.setEnabled(false);
     }

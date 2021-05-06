@@ -1,21 +1,27 @@
 package com.example.whistscoretable;
 
+import androidx.room.Entity;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
+@Entity
 public class CurrentGame implements Serializable {
-    private final int noHands;
+    //private final int noHands;
+    private int id;
     private int round;
     private int noPlayers;
     private int noRounds;
     private int handsList[];
     private ArrayList<Player> playersList = new ArrayList<>();
     private boolean gameFinish;
+    private String name;
+
 
     CurrentGame()
     {
         round=0;
-        noHands=8;
+        //noHands=8;
         gameFinish=false;
     }
 
@@ -95,4 +101,19 @@ public class CurrentGame implements Serializable {
         this.gameFinish = gameFinish;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

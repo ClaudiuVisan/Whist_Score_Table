@@ -18,6 +18,7 @@ public class BetsHandsActivity extends AppCompatActivity {
     private int cnt=0;
     private boolean finishBet=false;
     private final int[] idList={R.id.btn0,R.id.btn1,R.id.btn2,R.id.btn3,R.id.btn4,R.id.btn5,R.id.btn6,R.id.btn7,R.id.btn8};
+    private RadioGroup mFirstGroup, mSecondGroup, mThirdGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +28,9 @@ public class BetsHandsActivity extends AppCompatActivity {
         currentGame.setRound(currentGame.getRound()+1);
         Button placeBet= findViewById(R.id.setBet);
         placeBet.setEnabled(false);
-        RadioGroup mFirstGroup =  findViewById(R.id.first_group);
-        RadioGroup mSecondGroup =  findViewById(R.id.second_group);
-        RadioGroup mThirdGroup =  findViewById(R.id.third_group);
+        mFirstGroup =  findViewById(R.id.first_group);
+        mSecondGroup =  findViewById(R.id.second_group);
+        mThirdGroup =  findViewById(R.id.third_group);
         mFirstGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -78,6 +79,8 @@ public class BetsHandsActivity extends AppCompatActivity {
         showName.setText(currentGame.getPlayersList().get(0).getName());
     }
 
+
+
     public void onClickPlaceBet(View view) {
         isChecked();
         if(finishBet) {
@@ -87,6 +90,9 @@ public class BetsHandsActivity extends AppCompatActivity {
             checkBets.putExtras(passCurrentGame);
             startActivity(checkBets);
         }
+        mFirstGroup.clearCheck();
+        mSecondGroup.clearCheck();
+        mThirdGroup.clearCheck();
         Button placeBet= findViewById(R.id.setBet);
         placeBet.setEnabled(false);
     }
