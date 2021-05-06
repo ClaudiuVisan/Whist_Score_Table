@@ -3,7 +3,7 @@
     <string name="titlu">WHIST SCORE TABLE</string>
     <string name="newGame">START GAME</string>
     <string name="noPlayers">SELECT NUMBER OF PLAYERS</string>
-    <string name="loadGame">LOAD GAME</string>
+    <string name="loadGame"> LOAD GAME</string>
     <string name="spinPlayers">PLAYERS</string>
     <string name="startGame">START GAME</string>
     <string-array name="spinNoPlayers">
@@ -23,4 +23,7 @@
     <string name="doneText">Input Results</string>
     <string name="finalScore">Score</string>
     <string name="endgame">END GAME</string>
+    <string name="saveGame">SAVE GAME</string>
+    <string name="addSave">SAVE</string>
+    <string name="selectGame">SELECT GAME</string>
 </resources>
