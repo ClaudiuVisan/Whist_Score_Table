@@ -31,8 +31,8 @@ public class CheckBetsActivity extends AppCompatActivity {
      passCurrentGame.putSerializable("currentGame",currentGame);
      back.putExtras(passCurrentGame);
      startActivity(back);
-
   }
+
     public void createBetTable(int noPlayers)
     {
         TableLayout betTable = findViewById(R.id.betTable);

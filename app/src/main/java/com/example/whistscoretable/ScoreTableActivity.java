@@ -36,6 +36,9 @@ public class ScoreTableActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent saveGame = new Intent (ScoreTableActivity.this, SaveGameActivity.class);
+                Bundle passCurrentGame = new Bundle();
+                passCurrentGame.putSerializable("currentGame", currentGame);
+                saveGame.putExtras(passCurrentGame);
                 startActivity(saveGame);
             }
         });

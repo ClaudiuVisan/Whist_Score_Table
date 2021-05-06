@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 public class SaveGameActivity extends AppCompatActivity {
 
+    private CurrentGame currentGame;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,6 +19,7 @@ public class SaveGameActivity extends AppCompatActivity {
         Button addSavedGame = findViewById(R.id.addSavedGame);
         final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production").allowMainThreadQueries().build();
         EditText gameName = findViewById(R.id.gameName);
+        currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
         addSavedGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -28,5 +30,14 @@ public class SaveGameActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed(){
+        Intent back=new Intent(this,ScoreTableActivity.class);
+        Bundle passCurrentGame = new Bundle();
+        passCurrentGame.putSerializable("currentGame",currentGame);
+        back.putExtras(passCurrentGame);
+        startActivity(back);
     }
 }
