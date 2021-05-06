@@ -1,34 +1,43 @@
 package com.example.whistscoretable;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-@Entity
+//@Entity
 public class CurrentGame implements Serializable {
-    private final int noHands;
+
+    //@PrimaryKey(autoGenerate = true)
+    private int id;
+    //private final int noHands;
+    //@ColumnInfo(name = "round")
     private int round;
+    //@ColumnInfo(name = "no_players")
     private int noPlayers;
+   // @ColumnInfo(name = "no_rounds")
     private int noRounds;
-    private int handsList[];
+    //@ColumnInfo(name = "hands_list")
+    //@Ignore
+    private int [] handsList;
+    //@ColumnInfo(name = "players_list")
     private ArrayList<Player> playersList = new ArrayList<>();
+    //@ColumnInfo(name = "game_finish")
     private boolean gameFinish;
+    //@ColumnInfo(name = "name")
+    private String name;
 
     CurrentGame()
     {
         round=0;
-        noHands=8;
+        //noHands=8;
         gameFinish=false;
     }
 
-   /* public int getNoHands() {
-        return noHands;
-    }*/
 
-  /*  public void setNoHands(int noHands) {
-        this.noHands = noHands;
-    }*/
 
     public int getRound() {
         return round;
@@ -98,4 +107,19 @@ public class CurrentGame implements Serializable {
         this.gameFinish = gameFinish;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

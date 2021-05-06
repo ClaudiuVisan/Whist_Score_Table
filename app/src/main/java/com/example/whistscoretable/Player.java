@@ -1,7 +1,10 @@
 package com.example.whistscoretable;
 
+//import androidx.room.Entity;
+
 import java.io.Serializable;
 
+//@Entity
 public class Player implements Serializable {
     private int score, bet, result;
     private String name;
