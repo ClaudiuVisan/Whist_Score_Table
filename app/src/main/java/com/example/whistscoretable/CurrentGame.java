@@ -1,6 +1,9 @@
 package com.example.whistscoretable;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,12 +11,20 @@ import java.util.ArrayList;
 @Entity
 public class CurrentGame implements Serializable {
     //private final int noHands;
+    @PrimaryKey(autoGenerate = true)
     private int id;
+    @ColumnInfo(name = "round")
     private int round;
+    @ColumnInfo(name = "no_players")
     private int noPlayers;
+    @ColumnInfo(name = "no_rounds")
     private int noRounds;
+    @Ignore
     private int handsList[];
+    @Ignore
+    //@ColumnInfo(name = "players_list")
     private ArrayList<Player> playersList = new ArrayList<>();
+    @ColumnInfo(name = "game_finish")
     private boolean gameFinish;
     private String name;
 
