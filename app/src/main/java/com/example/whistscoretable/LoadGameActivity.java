@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.ArrayList;
@@ -32,6 +33,11 @@ public class LoadGameActivity extends AppCompatActivity {
         }*/
         adapter = new GameAdapter(games);
         recyclerView.setAdapter(adapter);
+    }
 
+    @Override
+    public void onBackPressed(){
+        Intent back=new Intent(this,MenuActivity.class);
+        startActivity(back);
     }
 }

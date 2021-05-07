@@ -27,6 +27,7 @@ public class InputResultsActivity extends AppCompatActivity {
         Button setRes=findViewById(R.id.setResult);
         setRes.setEnabled(false);
         currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
+        currentGame.setBackPressed(true);
         if(currentGame.getRound()==currentGame.getNoRounds())
         {
             currentGame.setGameFinish(true);
@@ -210,5 +211,15 @@ public class InputResultsActivity extends AppCompatActivity {
            }
         }
     }
+
+    @Override
+    public void onBackPressed(){
+        Intent back=new Intent(this,CheckBetsActivity.class);
+        Bundle passCurrentGame = new Bundle();
+        passCurrentGame.putSerializable("currentGame",currentGame);
+        back.putExtras(passCurrentGame);
+        startActivity(back);
+    }
+
 
 }

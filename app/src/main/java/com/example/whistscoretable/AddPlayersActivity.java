@@ -122,4 +122,10 @@ public class AddPlayersActivity extends AppCompatActivity {
         passCurrentGame.putSerializable("currentGame",currentGame);
         return passCurrentGame;
     }
+
+    @Override
+    public void onBackPressed(){
+        Intent back=new Intent(this,MenuActivity.class);
+        startActivity(back);
+    }
 }

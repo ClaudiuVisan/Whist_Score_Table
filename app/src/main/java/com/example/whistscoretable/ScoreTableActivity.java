@@ -25,8 +25,7 @@ public class ScoreTableActivity extends AppCompatActivity {
         setScoreTable();
         Button placeBets = findViewById(R.id.placeBets);
         placeBets.setOnClickListener(v -> {
-            if(currentGame.getRound()>0)
-            {
+            if (currentGame.getRound() > 0 && currentGame.isNeedRotate()) {
                 currentGame.rotatePlayers();
             }
             checkActivity();
@@ -35,7 +34,7 @@ public class ScoreTableActivity extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent saveGame = new Intent (ScoreTableActivity.this, SaveGameActivity.class);
+                Intent saveGame = new Intent(ScoreTableActivity.this, SaveGameActivity.class);
                 Bundle passCurrentGame = new Bundle();
                 passCurrentGame.putSerializable("currentGame", currentGame);
                 saveGame.putExtras(passCurrentGame);
@@ -45,39 +44,63 @@ public class ScoreTableActivity extends AppCompatActivity {
 
     }
 
-   public void setScoreTable()
-   {
-       TableLayout scoreTable = findViewById(R.id.tabel);
-       scoreTable.setVerticalGravity(Gravity.CENTER_VERTICAL);
-       scoreTable.setColumnStretchable(0,true);
-       scoreTable.setColumnStretchable(1,true);
-       scoreTable.setVerticalGravity(Gravity.START);
-       for(int i=1;i<=currentGame.getNoPlayers();i++)
-       {
-           TableRow rand = new TableRow(this);
-           TableRow.LayoutParams myParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.MATCH_PARENT);
-           rand.setLayoutParams(myParams);
-           TextView casetNume = new TextView(this);
-           TextView casetScor = new TextView(this);
-           casetNume.setText(currentGame.getPlayersList().get(i-1).getName());
-           casetScor.setText(String.valueOf(currentGame.getPlayersList().get(i-1).getScore()));
-           casetNume.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
-           casetNume.setWidth(TypedValue.COMPLEX_UNIT_DIP*41);
-           casetScor.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
-           casetScor.setGravity(Gravity.END);
-           rand.addView(casetNume,myParams);
-           rand.addView(casetScor,myParams);
-           scoreTable.addView(rand,myParams);
-       }
-   }
+    @Override
+    public void onBackPressed() {
+        Intent back;
+        if (currentGame.isBackPressed()) {
+            revertPlayersScore();
+            back = new Intent(this, InputResultsActivity.class);
+            Bundle passCurrentGame = new Bundle();
+            passCurrentGame.putSerializable("currentGame", currentGame);
+            back.putExtras(passCurrentGame);
+        } else {
+            back = new Intent(this, AddPlayersActivity.class);
+        }
+        startActivity(back);
+    }
 
-   public void checkActivity()
-   {
-       Intent bets = new Intent(ScoreTableActivity.this, BetsHandsActivity.class);
-       Bundle passCurrentGame = new Bundle();
-       passCurrentGame.putSerializable("currentGame", currentGame);
-       bets.putExtras(passCurrentGame);
-       startActivity(bets);
-   }
+    public void setScoreTable() {
+        TableLayout scoreTable = findViewById(R.id.tabel);
+        scoreTable.setVerticalGravity(Gravity.CENTER_VERTICAL);
+        scoreTable.setColumnStretchable(0, true);
+        scoreTable.setColumnStretchable(1, true);
+        scoreTable.setVerticalGravity(Gravity.START);
+        for (int i = 1; i <= currentGame.getNoPlayers(); i++) {
+            TableRow rand = new TableRow(this);
+            TableRow.LayoutParams myParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.MATCH_PARENT);
+            rand.setLayoutParams(myParams);
+            TextView casetNume = new TextView(this);
+            TextView casetScor = new TextView(this);
+            casetNume.setText(currentGame.getPlayersList().get(i - 1).getName());
+            casetScor.setText(String.valueOf(currentGame.getPlayersList().get(i - 1).getScore()));
+            casetNume.setTextSize(TypedValue.COMPLEX_UNIT_SP, 28);
+            casetNume.setWidth(TypedValue.COMPLEX_UNIT_DIP * 41);
+            casetScor.setTextSize(TypedValue.COMPLEX_UNIT_SP, 28);
+            casetScor.setGravity(Gravity.END);
+            rand.addView(casetNume, myParams);
+            rand.addView(casetScor, myParams);
+            scoreTable.addView(rand, myParams);
+        }
+    }
+
+    public void checkActivity() {
+        Intent bets = new Intent(ScoreTableActivity.this, BetsHandsActivity.class);
+        Bundle passCurrentGame = new Bundle();
+        passCurrentGame.putSerializable("currentGame", currentGame);
+        bets.putExtras(passCurrentGame);
+        startActivity(bets);
+    }
+
+    public void revertPlayersScore() {
+        for (int i = 0; i < currentGame.getNoPlayers(); i++) {
+            {
+                if (currentGame.getPlayersList().get(i).getBet() == currentGame.getPlayersList().get(i).getResult()) {
+                    currentGame.getPlayersList().get(i).setScore(currentGame.getPlayersList().get(i).getScore() - 5 - currentGame.getPlayersList().get(i).getBet());
+                } else {
+                    currentGame.getPlayersList().get(i).setScore(currentGame.getPlayersList().get(i).getScore() + Math.abs(currentGame.getPlayersList().get(i).getBet() - currentGame.getPlayersList().get(i).getResult()));
+                }
+            }
+        }
+    }
 }
 

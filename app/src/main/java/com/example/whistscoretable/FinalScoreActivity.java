@@ -57,4 +57,13 @@ public class FinalScoreActivity extends AppCompatActivity {
         Intent endGame = new Intent(this, MenuActivity.class);
         startActivity(endGame);
     }
+
+    @Override
+    public void onBackPressed(){
+        Intent back=new Intent(this,InputResultsActivity.class);
+        Bundle passCurrentGame = new Bundle();
+        passCurrentGame.putSerializable("currentGame",currentGame);
+        back.putExtras(passCurrentGame);
+        startActivity(back);
+    }
 }

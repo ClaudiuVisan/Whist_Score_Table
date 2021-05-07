@@ -27,6 +27,9 @@ public class CurrentGame implements Serializable {
     @ColumnInfo(name = "game_finish")
     private boolean gameFinish;
     private String name;
+    @Ignore
+    private boolean backPressed;
+    private boolean needRotate;
 
 
     CurrentGame()
@@ -34,6 +37,8 @@ public class CurrentGame implements Serializable {
         round=0;
         //noHands=8;
         gameFinish=false;
+        backPressed=false;
+        needRotate=true;
     }
 
    /* public int getNoHands() {
@@ -126,5 +131,21 @@ public class CurrentGame implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isBackPressed() {
+        return backPressed;
+    }
+
+    public void setBackPressed(boolean backPressed) {
+        this.backPressed = backPressed;
+    }
+
+    public boolean isNeedRotate() {
+        return needRotate;
+    }
+
+    public void setNeedRotate(boolean needRotate) {
+        this.needRotate = needRotate;
     }
 }

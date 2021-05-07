@@ -26,6 +26,7 @@ public class BetsHandsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bets_hands);
         currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
         currentGame.setRound(currentGame.getRound()+1);
+        currentGame.setNeedRotate(true);
         Button placeBet= findViewById(R.id.setBet);
         placeBet.setEnabled(false);
         mFirstGroup =  findViewById(R.id.first_group);
@@ -78,8 +79,6 @@ public class BetsHandsActivity extends AppCompatActivity {
         TextView showName = findViewById(R.id.showName);
         showName.setText(currentGame.getPlayersList().get(0).getName());
     }
-
-
 
     public void onClickPlaceBet(View view) {
         isChecked();
@@ -170,6 +169,16 @@ public class BetsHandsActivity extends AppCompatActivity {
             crtButton.setEnabled(false);
             crtButton.setBackgroundResource(R.drawable.radio_disabled);
         }
+    }
+
+    @Override
+    public void onBackPressed(){
+        currentGame.setNeedRotate(false);
+        Intent back=new Intent(this,ScoreTableActivity.class);
+        Bundle passCurrentGame = new Bundle();
+        passCurrentGame.putSerializable("currentGame",currentGame);
+        back.putExtras(passCurrentGame);
+        startActivity(back);
     }
 
 }
