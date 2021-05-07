@@ -174,6 +174,7 @@ public class BetsHandsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         currentGame.setNeedRotate(false);
+        currentGame.setRound(currentGame.getRound()-1);
         Intent back=new Intent(this,ScoreTableActivity.class);
         Bundle passCurrentGame = new Bundle();
         passCurrentGame.putSerializable("currentGame",currentGame);
