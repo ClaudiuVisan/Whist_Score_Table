@@ -1,6 +1,7 @@
 package com.example.whistscoretable;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Index;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -15,4 +16,6 @@ public interface GameDao {
     @Insert
     void insertAll(CurrentGame... currentGames);
 
+    @Query("DELETE FROM currentgame")
+    void deleteAll();
 }

@@ -21,12 +21,14 @@ public class CurrentGame implements Serializable {
     private int noRounds;
     @Ignore
     private int handsList[];
-    @Ignore
-    //@ColumnInfo(name = "players_list")
+    //@Ignore
+    @ColumnInfo(name = "players_list")
     private ArrayList<Player> playersList = new ArrayList<>();
     @ColumnInfo(name = "game_finish")
     private boolean gameFinish;
+    @ColumnInfo(name = "name")
     private String name;
+
 
 
     CurrentGame()
@@ -127,4 +129,6 @@ public class CurrentGame implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+
 }
