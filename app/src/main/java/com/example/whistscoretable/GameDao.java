@@ -1,4 +1,4 @@
-/*package com.example.whistscoretable;
+package com.example.whistscoretable;
 
 import androidx.room.Dao;
 import androidx.room.Index;
@@ -16,4 +16,3 @@ public interface GameDao {
     void insertAll(CurrentGame... currentGames);
 
 }
-*/

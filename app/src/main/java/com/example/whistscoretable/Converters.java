@@ -1,4 +1,4 @@
-/*package com.example.whistscoretable;
+package com.example.whistscoretable;
 
 import androidx.room.TypeConverter;
 import com.google.gson.Gson;
@@ -35,4 +35,4 @@ public class Converters implements Serializable {
         return productCategoriesList;
     }
 
-}*/
+}

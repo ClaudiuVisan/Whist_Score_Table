@@ -1,4 +1,4 @@
-/*package com.example.whistscoretable;
+package com.example.whistscoretable;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
@@ -11,5 +11,5 @@ import com.example.whistscoretable.CurrentGame;
 //@Database (entities = {Player.class},version = 1)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
-        public abstract GameDao gameDao();
-}*/
+    public abstract GameDao gameDao();
+}

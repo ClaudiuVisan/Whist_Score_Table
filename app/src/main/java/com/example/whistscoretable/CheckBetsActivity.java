@@ -26,13 +26,14 @@ public class CheckBetsActivity extends AppCompatActivity {
      @Override
    public void onBackPressed(){
      currentGame.setRound(currentGame.getRound()-1);
+     currentGame.setBackPressed(false);
      Intent back=new Intent(this,BetsHandsActivity.class);
      Bundle passCurrentGame = new Bundle();
      passCurrentGame.putSerializable("currentGame",currentGame);
      back.putExtras(passCurrentGame);
      startActivity(back);
-
   }
+
     public void createBetTable(int noPlayers)
     {
         TableLayout betTable = findViewById(R.id.betTable);
