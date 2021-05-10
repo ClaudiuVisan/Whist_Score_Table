@@ -30,7 +30,7 @@ public class ScoreTableActivity extends AppCompatActivity {
             }
             checkActivity();
         });
-        ImageButton imageButton = findViewById(R.id.imageButton);
+        ImageButton imageButton = findViewById(R.id.saveButton);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
