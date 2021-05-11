@@ -18,4 +18,7 @@ public interface GameDao {
 
     @Query("DELETE FROM currentgame")
     void deleteAll();
+
+    @Delete
+    void delete(CurrentGame game);
 }

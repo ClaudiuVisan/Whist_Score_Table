@@ -8,12 +8,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +54,17 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder>{
                 mContext.startActivity(load);
             }
         });
+        holder.deleteSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("TAG", "delete " + games.get(position).getName());
+                AppDatabase db = Room.databaseBuilder(mContext, AppDatabase.class, "production").fallbackToDestructiveMigration().allowMainThreadQueries().build();
+                db.gameDao().delete(games.get(position));
+                Intent intent = new Intent(mContext,LoadGameActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -62,10 +75,12 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView gameName;
         LinearLayout gameRow;
+        ImageButton deleteSave;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             gameName = itemView.findViewById(R.id.gameName);
             gameRow = itemView.findViewById(R.id.gameRow);
+            deleteSave = itemView.findViewById(R.id.deleteSave);
         }
     }
 }

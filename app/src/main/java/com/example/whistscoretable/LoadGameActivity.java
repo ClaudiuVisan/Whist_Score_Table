@@ -7,6 +7,7 @@ import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ public class LoadGameActivity extends AppCompatActivity {
         List<CurrentGame> games = db.gameDao().getAllGames();
         adapter = new GameAdapter(games, this);
         recyclerView.setAdapter(adapter);
+
     }
 
     @Override
@@ -34,4 +36,9 @@ public class LoadGameActivity extends AppCompatActivity {
         Intent back=new Intent(this,MenuActivity.class);
         startActivity(back);
     }
+
+
+
+
 }
+
