@@ -40,7 +40,7 @@ public class ScoreTableActivity extends AppCompatActivity {
                 passCurrentGame.putSerializable("currentGame", currentGame);
                 saveGame.putExtras(passCurrentGame);
                 startActivity(saveGame);
-                startActivity(saveGame);
+
             }
         });
 
