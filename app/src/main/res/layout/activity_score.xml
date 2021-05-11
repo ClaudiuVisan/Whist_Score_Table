@@ -57,6 +57,7 @@
         tools:layout_editor_absoluteY="633dp" />
 
     <ImageButton
+        android:background="@color/bej"
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
