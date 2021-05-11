@@ -3,15 +3,17 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="15dp"
-    android:id="@+id/gameRow">
+    android:paddingBottom="10dp"
+    android:id="@+id/gameRow"
+    android:background="@drawable/background_color_bej">
 
-    
     <TextView
         android:id="@+id/gameName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
-        />
+        android:textSize="28sp"
+        android:textAlignment="center"
+        android:background="@drawable/border"
+        android:textColor="@color/white"/>
 
 </LinearLayout>

@@ -1,25 +1,44 @@
 package com.example.whistscoretable;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 @Entity
 public class CurrentGame implements Serializable {
-    private final int noHands;
+    //private final int noHands;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+    @ColumnInfo(name = "round")
     private int round;
+    @ColumnInfo(name = "no_players")
     private int noPlayers;
+    @ColumnInfo(name = "no_rounds")
     private int noRounds;
+    @Ignore
     private int handsList[];
+    @Ignore
+    //@ColumnInfo(name = "players_list")
     private ArrayList<Player> playersList = new ArrayList<>();
+    @ColumnInfo(name = "game_finish")
     private boolean gameFinish;
+    private String name;
+    @Ignore
+    private boolean backPressed;
+    private boolean needRotate;
+
 
     CurrentGame()
     {
         round=0;
-        noHands=8;
+        //noHands=8;
         gameFinish=false;
+        backPressed=false;
+        needRotate=true;
     }
 
    /* public int getNoHands() {
@@ -98,4 +117,35 @@ public class CurrentGame implements Serializable {
         this.gameFinish = gameFinish;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isBackPressed() {
+        return backPressed;
+    }
+
+    public void setBackPressed(boolean backPressed) {
+        this.backPressed = backPressed;
+    }
+
+    public boolean isNeedRotate() {
+        return needRotate;
+    }
+
+    public void setNeedRotate(boolean needRotate) {
+        this.needRotate = needRotate;
+    }
 }

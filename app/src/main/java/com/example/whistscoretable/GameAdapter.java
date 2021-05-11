@@ -13,11 +13,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder>{
-    ArrayList<String> games;
+    List<CurrentGame> games;
 
-    public GameAdapter(ArrayList<String> games) {
+    public GameAdapter(List<CurrentGame> games) {
         this.games = games;
     }
 
@@ -30,11 +31,15 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull GameAdapter.ViewHolder holder, int position) {
-        holder.gameName.setText(games.get(position));
+        holder.gameName.setText(games.get(position).getName());
         holder.gameRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("TAG", "clicked on " + position);
+                Log.d("TAG", "clicked on " + games.get(position).getName() + "; round " + games.get(position).getRound() + ";id " + games.get(position).getId());
+                for(int i=0; i<games.get(position).getNoPlayers();i++)
+                {
+                    Log.d("TAG", games.get(position).getPlayersList().get(i).getName() + games.get(position).getPlayersList().get(i).getScore());
+                }
             }
         });
     }
