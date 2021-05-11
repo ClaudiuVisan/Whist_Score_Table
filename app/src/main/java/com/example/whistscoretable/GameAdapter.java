@@ -35,7 +35,11 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder>{
         holder.gameRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("TAG", "clicked on " + position);
+                Log.d("TAG", "clicked on " + games.get(position).getName() + "; round " + games.get(position).getRound() + ";id " + games.get(position).getId());
+                for(int i=0; i<games.get(position).getNoPlayers();i++)
+                {
+                    Log.d("TAG", games.get(position).getPlayersList().get(i).getName() + games.get(position).getPlayersList().get(i).getScore());
+                }
             }
         });
     }
