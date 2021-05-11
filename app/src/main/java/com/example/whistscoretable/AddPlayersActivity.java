@@ -117,7 +117,7 @@ public class AddPlayersActivity extends AppCompatActivity {
         Bundle passCurrentGame = new Bundle();
         currentGame.setNoRounds(12+3*noPlayers);
         currentGame.setNoPlayers(noPlayers);
-        currentGame.createHands();
+        //currentGame.createHands();
 
         passCurrentGame.putSerializable("currentGame",currentGame);
         return passCurrentGame;

@@ -22,6 +22,7 @@ public class ScoreTableActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
         currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
+        currentGame.createHands();
         setScoreTable();
         Button placeBets = findViewById(R.id.placeBets);
         placeBets.setOnClickListener(v -> {

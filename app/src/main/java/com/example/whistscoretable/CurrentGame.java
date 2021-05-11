@@ -21,8 +21,7 @@ public class CurrentGame implements Serializable {
     private int noRounds;
     @Ignore
     private int handsList[];
-    @Ignore
-    //@ColumnInfo(name = "players_list")
+    @ColumnInfo(name = "players_list")
     private ArrayList<Player> playersList = new ArrayList<>();
     @ColumnInfo(name = "game_finish")
     private boolean gameFinish;
@@ -40,14 +39,6 @@ public class CurrentGame implements Serializable {
         backPressed=false;
         needRotate=true;
     }
-
-   /* public int getNoHands() {
-        return noHands;
-    }*/
-
-  /*  public void setNoHands(int noHands) {
-        this.noHands = noHands;
-    }*/
 
     public int getRound() {
         return round;

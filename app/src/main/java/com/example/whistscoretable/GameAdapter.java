@@ -1,6 +1,9 @@
 package com.example.whistscoretable;
 
+import android.content.Context;
+import android.content.Intent;
 import android.nfc.Tag;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,10 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder>{
-    List<CurrentGame> games;
+    private List<CurrentGame> games;
+    private Context mContext;
 
-    public GameAdapter(List<CurrentGame> games) {
+    public GameAdapter(List<CurrentGame> games, Context context) {
         this.games = games;
+        mContext=context;
     }
 
     @NonNull
@@ -40,6 +45,11 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder>{
                 {
                     Log.d("TAG", games.get(position).getPlayersList().get(i).getName() + games.get(position).getPlayersList().get(i).getScore());
                 }
+                Intent load=new Intent(mContext,ScoreTableActivity.class);
+                Bundle passCurrentGame = new Bundle();
+                passCurrentGame.putSerializable("currentGame",games.get(position));
+                load.putExtras(passCurrentGame);
+                mContext.startActivity(load);
             }
         });
     }
