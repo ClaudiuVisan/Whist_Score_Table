@@ -30,7 +30,6 @@ public class CurrentGame implements Serializable {
     private boolean backPressed;
     private boolean needRotate;
 
-
     CurrentGame()
     {
         round=0;

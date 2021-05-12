@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+
 public class BetsHandsActivity extends AppCompatActivity {
     private CurrentGame currentGame;
     private boolean isChecking = true;
@@ -33,6 +34,7 @@ public class BetsHandsActivity extends AppCompatActivity {
         mSecondGroup =  findViewById(R.id.second_group);
         mThirdGroup =  findViewById(R.id.third_group);
         mFirstGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId != -1 && isChecking) {

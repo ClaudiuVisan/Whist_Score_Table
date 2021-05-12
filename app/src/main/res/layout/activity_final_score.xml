@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ScoreTableActivity"
+    tools:context=".FinalScoreActivity"
     android:background="@drawable/background_color_bej">
 
     <TextView
@@ -48,13 +48,13 @@
         android:id="@+id/endgame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onClickEndGame"
         android:text="@string/endgame"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabelFinal"
         android:background="@drawable/round_corner"
-        android:textSize="24sp"/>
+        android:textSize="24sp"
+        android:onClick="onClickEndGame"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
