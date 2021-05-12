@@ -9,15 +9,12 @@
     android:background="@drawable/background_color_bej">
 
 
-    
-
-
     <Button
         android:gravity="center"
         android:id="@+id/loadGame"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/round_corner"
         android:onClick="onClickLoadGame"
         android:text="@string/loadGame"
@@ -27,7 +24,7 @@
         app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newGame"
-        app:layout_constraintVertical_bias="0.008" />
+        app:layout_constraintVertical_bias="0.01" />
 
 
     <TextView
@@ -48,19 +45,19 @@
 
     <Button
         android:id="@+id/newGame"
-        android:gravity="center"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="152dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/round_corner"
+        android:gravity="center"
         android:onClick="onClickNewGame"
         android:text="@string/newGame"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titlu"
-        app:layout_constraintVertical_bias="0.824" />
+        app:layout_constraintVertical_bias="0.6" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

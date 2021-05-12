@@ -2,11 +2,11 @@ package com.example.whistscoretable;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
@@ -63,8 +63,6 @@ public class ScoreTableActivity extends AppCompatActivity {
     public void setScoreTable() {
         TableLayout scoreTable = findViewById(R.id.tabel);
         scoreTable.setVerticalGravity(Gravity.CENTER_VERTICAL);
-        scoreTable.setColumnStretchable(0, true);
-        scoreTable.setColumnStretchable(1, true);
         scoreTable.setVerticalGravity(Gravity.START);
         for (int i = 1; i <= currentGame.getNoPlayers(); i++) {
             TableRow rand = new TableRow(this);
@@ -75,7 +73,7 @@ public class ScoreTableActivity extends AppCompatActivity {
             casetNume.setText(currentGame.getPlayersList().get(i - 1).getName());
             casetScor.setText(String.valueOf(currentGame.getPlayersList().get(i - 1).getScore()));
             casetNume.setTextSize(TypedValue.COMPLEX_UNIT_SP, 28);
-            casetNume.setWidth(TypedValue.COMPLEX_UNIT_DIP * 41);
+            casetNume.setWidth(TableLayout.LayoutParams.WRAP_CONTENT);
             casetScor.setTextSize(TypedValue.COMPLEX_UNIT_SP, 28);
             casetScor.setGravity(Gravity.END);
             rand.addView(casetNume, myParams);

@@ -38,8 +38,6 @@ public class CheckBetsActivity extends AppCompatActivity {
     {
         TableLayout betTable = findViewById(R.id.betTable);
         betTable.setVerticalGravity(Gravity.CENTER_VERTICAL);
-        betTable.setColumnStretchable(0,true);
-        betTable.setColumnStretchable(1,true);
         betTable.setVerticalGravity(Gravity.START);
         for(int i=1;i<=noPlayers;i++)
         {
@@ -51,7 +49,7 @@ public class CheckBetsActivity extends AppCompatActivity {
             casetNume.setText(currentGame.getPlayersList().get(i-1).getName());
             casetBet.setText(String.valueOf(currentGame.getPlayersList().get(i-1).getBet()));
             casetNume.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
-            casetNume.setWidth(TypedValue.COMPLEX_UNIT_DIP*41);
+            casetNume.setWidth(TableLayout.LayoutParams.WRAP_CONTENT);
             casetBet.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
             casetBet.setGravity(Gravity.END);
             rand.addView(casetNume,myParams);

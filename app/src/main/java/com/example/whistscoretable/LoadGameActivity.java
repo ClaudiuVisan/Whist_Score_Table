@@ -4,12 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class LoadGameActivity extends AppCompatActivity {
@@ -33,7 +29,13 @@ public class LoadGameActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed(){
-        Intent back=new Intent(this,MenuActivity.class);
+        boolean fromSave=getIntent().getExtras().getBoolean("fromSave");
+        Intent back;
+        if(fromSave){
+            back=new Intent(this,SaveGameActivity.class);
+        }else {
+            back = new Intent(this, MenuActivity.class);
+        }
         startActivity(back);
     }
 

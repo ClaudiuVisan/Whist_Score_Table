@@ -22,9 +22,11 @@ public class SaveGameActivity extends AppCompatActivity {
         addSavedGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean onSave = true;
                 currentGame.setName(gameName.getText().toString());
                 db.gameDao().insertAll(currentGame);
                 Intent intent = new Intent(SaveGameActivity.this, LoadGameActivity.class);
+                intent.putExtra("fromSave",onSave);
                 startActivity(intent);
             }
         });
