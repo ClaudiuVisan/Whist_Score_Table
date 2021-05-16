@@ -26,6 +26,8 @@ public class SaveGameActivity extends AppCompatActivity {
                 currentGame.setName(gameName.getText().toString());
                 db.gameDao().insertAll(currentGame);
                 Intent intent = new Intent(SaveGameActivity.this, LoadGameActivity.class);
+                Bundle passCurrentGame = new Bundle();
+                passCurrentGame.putSerializable("currentGame",currentGame);
                 intent.putExtra("fromSave",onSave);
                 startActivity(intent);
             }
@@ -34,10 +36,12 @@ public class SaveGameActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed(){
+        boolean onSave = true;
         Intent back=new Intent(this,ScoreTableActivity.class);
         Bundle passCurrentGame = new Bundle();
         passCurrentGame.putSerializable("currentGame",currentGame);
         back.putExtras(passCurrentGame);
+        back.putExtra("fromSave",onSave);
         startActivity(back);
     }
 }

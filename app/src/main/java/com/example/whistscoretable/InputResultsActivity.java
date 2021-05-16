@@ -108,39 +108,39 @@ public class InputResultsActivity extends AppCompatActivity {
 
     public void isChecked(){
         if (mCheckedId == R.id.btn00) {
-            Toast.makeText(this, "0", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "0", Toast.LENGTH_SHORT).show();
             result=0;
             setPlayerResult();
         } else if (mCheckedId == R.id.btn01) {
-            Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
             result=1;
             setPlayerResult();
         } else if (mCheckedId == R.id.btn02) {
-            Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
             result=2;
             setPlayerResult();
         } else if (mCheckedId == R.id.btn03) {
-            Toast.makeText(this, "3", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "3", Toast.LENGTH_SHORT).show();
             result=3;
             setPlayerResult();
         } else if (mCheckedId == R.id.btn04) {
-            Toast.makeText(this, "4", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "4", Toast.LENGTH_SHORT).show();
             result=4;
             setPlayerResult();
         } else if (mCheckedId == R.id.btn05) {
-            Toast.makeText(this, "5", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "5", Toast.LENGTH_SHORT).show();
             result=5;
             setPlayerResult();
         } else if (mCheckedId == R.id.btn06) {
-            Toast.makeText(this, "6", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "6", Toast.LENGTH_SHORT).show();
             result=6;
             setPlayerResult();
         } else if (mCheckedId == R.id.btn07) {
-            Toast.makeText(this, "7", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "7", Toast.LENGTH_SHORT).show();
             result=7;
             setPlayerResult();
         } else if (mCheckedId == R.id.btn08) {
-            Toast.makeText(this, "8", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "8", Toast.LENGTH_SHORT).show();
             result=8;
             setPlayerResult();
         }

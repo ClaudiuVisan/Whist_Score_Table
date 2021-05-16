@@ -58,8 +58,10 @@ public class AddPlayersActivity extends AppCompatActivity {
     }
 
     public void onClickStartGame(View view){
+        boolean fromLoad=false;
         Intent startGame = new Intent(AddPlayersActivity.this, ScoreTableActivity.class);
         startGame.putExtras(setGameStatus());
+        startGame.putExtra("fromLoad",fromLoad);
         if(nameNotSet)
         {
             Toast.makeText(this, "Please enter players names", Toast.LENGTH_SHORT).show();

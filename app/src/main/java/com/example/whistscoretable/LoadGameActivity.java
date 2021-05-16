@@ -12,11 +12,12 @@ public class LoadGameActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
-
+    private CurrentGame currentGame;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load_game);
+        currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production").fallbackToDestructiveMigration().allowMainThreadQueries().build();
@@ -29,11 +30,14 @@ public class LoadGameActivity extends AppCompatActivity {
     public void onBackPressed(){
         boolean fromSave=getIntent().getExtras().getBoolean("fromSave");
         Intent back;
+        Bundle passCurrentGame = new Bundle();
+        passCurrentGame.putSerializable("currentGame",currentGame);
         if(fromSave){
             back=new Intent(this,SaveGameActivity.class);
         }else {
             back = new Intent(this, MenuActivity.class);
         }
+        back.putExtras(passCurrentGame);
         startActivity(back);
     }
 }

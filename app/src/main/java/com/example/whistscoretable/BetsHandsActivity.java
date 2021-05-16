@@ -100,31 +100,31 @@ public class BetsHandsActivity extends AppCompatActivity {
 
     public void isChecked(){
         if (mCheckedId == R.id.btn0) {
-            Toast.makeText(this, "0", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "0", Toast.LENGTH_SHORT).show();
             setPlayerBet(0);
         } else if (mCheckedId == R.id.btn1) {
-            Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
             setPlayerBet(1);
         } else if (mCheckedId == R.id.btn2) {
-            Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
             setPlayerBet(2);
         } else if (mCheckedId == R.id.btn3) {
-            Toast.makeText(this, "3", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "3", Toast.LENGTH_SHORT).show();
             setPlayerBet(3);
         } else if (mCheckedId == R.id.btn4) {
-            Toast.makeText(this, "4", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "4", Toast.LENGTH_SHORT).show();
             setPlayerBet(4);
         } else if (mCheckedId == R.id.btn5) {
-            Toast.makeText(this, "5", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "5", Toast.LENGTH_SHORT).show();
             setPlayerBet(5);
         } else if (mCheckedId == R.id.btn6) {
-            Toast.makeText(this, "6", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "6", Toast.LENGTH_SHORT).show();
             setPlayerBet(6);
         } else if (mCheckedId == R.id.btn7) {
-            Toast.makeText(this, "7", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "7", Toast.LENGTH_SHORT).show();
             setPlayerBet(7);
         } else if (mCheckedId == R.id.btn8) {
-            Toast.makeText(this, "8", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "8", Toast.LENGTH_SHORT).show();
             setPlayerBet(8);
         }
     }

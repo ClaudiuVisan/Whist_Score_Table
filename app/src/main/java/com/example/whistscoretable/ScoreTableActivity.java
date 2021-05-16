@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 public class ScoreTableActivity extends AppCompatActivity {
     private CurrentGame currentGame;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,14 +47,19 @@ public class ScoreTableActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent back;
+        boolean fromLoad=getIntent().getExtras().getBoolean("fromLoad");
         if (currentGame.isBackPressed()) {
             revertPlayersScore();
             back = new Intent(this, InputResultsActivity.class);
             Bundle passCurrentGame = new Bundle();
             passCurrentGame.putSerializable("currentGame", currentGame);
             back.putExtras(passCurrentGame);
-        } else {
-            back = new Intent(this, AddPlayersActivity.class);
+        } else if(fromLoad==true){
+            boolean onSave=false;
+            back = new Intent(this, LoadGameActivity.class);
+            back.putExtra("fromSave",onSave);
+        }else{
+            back= new Intent(this, AddPlayersActivity.class);
         }
         startActivity(back);
     }

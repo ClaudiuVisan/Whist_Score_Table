@@ -23,6 +23,7 @@ import java.util.List;
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder>{
     private List<CurrentGame> games;
     private Context mContext;
+    private boolean fromLoad=true;
 
     public GameAdapter(List<CurrentGame> games, Context context) {
         this.games = games;
@@ -51,6 +52,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder>{
                 Bundle passCurrentGame = new Bundle();
                 passCurrentGame.putSerializable("currentGame",games.get(position));
                 load.putExtras(passCurrentGame);
+                load.putExtra("fromLoad",fromLoad);
                 mContext.startActivity(load);
             }
         });
