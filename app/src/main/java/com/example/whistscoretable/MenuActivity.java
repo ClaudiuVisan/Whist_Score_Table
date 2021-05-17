@@ -28,5 +28,8 @@ public class MenuActivity extends AppCompatActivity {
         loadGame.putExtra("fromSave",onSave);
         startActivity(loadGame);
     }
+
+    @Override
+    public void onBackPressed() {}
 }
 
