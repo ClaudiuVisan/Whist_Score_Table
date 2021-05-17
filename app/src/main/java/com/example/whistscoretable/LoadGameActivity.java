@@ -28,15 +28,8 @@ public class LoadGameActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed(){
-        boolean fromSave=getIntent().getExtras().getBoolean("fromSave");
-        Intent back;
         Bundle passCurrentGame = new Bundle();
-        passCurrentGame.putSerializable("currentGame",currentGame);
-        if(fromSave){
-            back=new Intent(this,SaveGameActivity.class);
-        }else {
-            back = new Intent(this, MenuActivity.class);
-        }
+        Intent back=new Intent(this,MenuActivity.class);
         back.putExtras(passCurrentGame);
         startActivity(back);
     }
