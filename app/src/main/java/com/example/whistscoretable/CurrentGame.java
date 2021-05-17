@@ -37,6 +37,7 @@ public class CurrentGame implements Serializable {
         gameFinish=false;
         backPressed=false;
         needRotate=true;
+        name="#!*#!*";
     }
 
     public int getRound() {

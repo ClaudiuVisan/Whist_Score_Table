@@ -24,7 +24,15 @@ public class SaveGameActivity extends AppCompatActivity {
             public void onClick(View v) {
                 boolean onSave = true;
                 currentGame.setName(gameName.getText().toString());
-                db.gameDao().insertAll(currentGame);
+                //db.gameDao().update(currentGame);
+                //db.gameDao().insertAll(currentGame);
+                if(!currentGame.getName().equals("#!*#!*")){
+                    db.gameDao().update(currentGame);
+                }
+                else {
+                    db.gameDao().insertAll(currentGame);
+                }
+
                 Intent intent = new Intent(SaveGameActivity.this, LoadGameActivity.class);
                 Bundle passCurrentGame = new Bundle();
                 passCurrentGame.putSerializable("currentGame",currentGame);
