@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Whist Score Table</string>
     <string name="titlu">WHIST SCORE TABLE</string>
-    <string name="newGame">START GAME</string>
+    <string name="newGame">NEW GAME</string>
     <string name="noPlayers">SELECT NUMBER OF PLAYERS</string>
-    <string name="loadGame">LOAD  GAME</string>
+    <string name="loadGame">LOAD GAME</string>
     <string name="spinPlayers">PLAYERS</string>
     <string name="startGame">START GAME</string>
     <string-array name="spinNoPlayers">
