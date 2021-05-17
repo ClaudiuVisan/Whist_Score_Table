@@ -6,16 +6,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/myLayout"
-    tools:context=".AddPlayersActivity">
+    tools:context=".AddPlayersActivity"
+    android:background="@drawable/background_color_bej">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="227dp">
+        android:layout_height="wrap_content">
 
 
         <RadioGroup
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="horizontal"
@@ -24,11 +25,14 @@
             app:layout_constraintHorizontal_bias="0.473"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintVertical_bias="0.323">
+            app:layout_constraintVertical_bias="0.323"
+            android:layout_weight="1"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp">
 
             <RadioButton
                 android:id="@+id/threePlayers"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:background="@drawable/radio_selector"
@@ -40,11 +44,12 @@
                 android:text=" 3 "
                 android:textAlignment="center"
                 android:textColor="@drawable/text_color"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:layout_weight="1"/>
 
             <RadioButton
                 android:id="@+id/fourPlayers"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:background="@drawable/radio_selector"
@@ -56,11 +61,12 @@
                 android:text=" 4 "
                 android:textAlignment="center"
                 android:textColor="@drawable/text_color"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:layout_weight="1"/>
 
             <RadioButton
                 android:id="@+id/fivePlayers"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:background="@drawable/radio_selector"
@@ -72,11 +78,12 @@
                 android:text=" 5 "
                 android:textAlignment="center"
                 android:textColor="@drawable/text_color"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:layout_weight="1"/>
 
             <RadioButton
                 android:id="@+id/sixPlayers"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:background="@drawable/radio_selector"
@@ -88,7 +95,8 @@
                 android:text=" 6 "
                 android:textAlignment="center"
                 android:textColor="@drawable/text_color"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:layout_weight="1" />
         </RadioGroup>
 
         <TextView
@@ -96,6 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="12dp"
             android:text="@string/noPlayers"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -109,7 +118,8 @@
             android:id="@+id/startGame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/round_corner"
             android:onClick="onClickStartGame"
             android:text="@string/startGame"

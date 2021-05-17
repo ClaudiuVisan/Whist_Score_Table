@@ -58,8 +58,10 @@ public class AddPlayersActivity extends AppCompatActivity {
     }
 
     public void onClickStartGame(View view){
+        boolean fromLoad=false;
         Intent startGame = new Intent(AddPlayersActivity.this, ScoreTableActivity.class);
         startGame.putExtras(setGameStatus());
+        startGame.putExtra("fromLoad",fromLoad);
         if(nameNotSet)
         {
             Toast.makeText(this, "Please enter players names", Toast.LENGTH_SHORT).show();
@@ -117,9 +119,15 @@ public class AddPlayersActivity extends AppCompatActivity {
         Bundle passCurrentGame = new Bundle();
         currentGame.setNoRounds(12+3*noPlayers);
         currentGame.setNoPlayers(noPlayers);
-        currentGame.createHands();
+        //currentGame.createHands();
 
         passCurrentGame.putSerializable("currentGame",currentGame);
         return passCurrentGame;
+    }
+
+    @Override
+    public void onBackPressed(){
+        Intent back=new Intent(this,MenuActivity.class);
+        startActivity(back);
     }
 }

@@ -21,30 +21,24 @@ public class CurrentGame implements Serializable {
     private int noRounds;
     @Ignore
     private int handsList[];
-    //@Ignore
     @ColumnInfo(name = "players_list")
     private ArrayList<Player> playersList = new ArrayList<>();
     @ColumnInfo(name = "game_finish")
     private boolean gameFinish;
-    @ColumnInfo(name = "name")
     private String name;
-
-
+    @Ignore
+    private boolean backPressed;
+    private boolean needRotate;
 
     CurrentGame()
     {
         round=0;
         //noHands=8;
         gameFinish=false;
+        backPressed=false;
+        needRotate=true;
+        name="#!*#!*";
     }
-
-   /* public int getNoHands() {
-        return noHands;
-    }*/
-
-  /*  public void setNoHands(int noHands) {
-        this.noHands = noHands;
-    }*/
 
     public int getRound() {
         return round;
@@ -130,5 +124,19 @@ public class CurrentGame implements Serializable {
         this.name = name;
     }
 
+    public boolean isBackPressed() {
+        return backPressed;
+    }
 
+    public void setBackPressed(boolean backPressed) {
+        this.backPressed = backPressed;
+    }
+
+    public boolean isNeedRotate() {
+        return needRotate;
+    }
+
+    public void setNeedRotate(boolean needRotate) {
+        this.needRotate = needRotate;
+    }
 }

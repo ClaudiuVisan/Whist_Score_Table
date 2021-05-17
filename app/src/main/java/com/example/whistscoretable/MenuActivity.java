@@ -1,7 +1,7 @@
 package com.example.whistscoretable;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +14,7 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        // AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production").allowMainThreadQueries().fallbackToDestructiveMigration().build();
-        // db.gameDao().deleteAll();
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
     }
 
     public void onClickNewGame(View view){
@@ -24,10 +23,13 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void onClickLoadGame(View view){
-        // Implementare activity load game
-        // TO DO
+        boolean onSave=false;
         Intent loadGame = new Intent (this, LoadGameActivity.class);
+        loadGame.putExtra("fromSave",onSave);
         startActivity(loadGame);
     }
+
+    @Override
+    public void onBackPressed() {}
 }
 

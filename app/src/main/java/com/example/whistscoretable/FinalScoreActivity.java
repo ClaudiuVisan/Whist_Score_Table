@@ -32,8 +32,6 @@ public class FinalScoreActivity extends AppCompatActivity {
     {
         TableLayout finalScoreTable = findViewById(R.id.tabelFinal);
         finalScoreTable.setVerticalGravity(Gravity.CENTER_VERTICAL);
-        finalScoreTable.setColumnStretchable(0,true);
-        finalScoreTable.setColumnStretchable(1,true);
         finalScoreTable.setVerticalGravity(Gravity.START);
         for(int i=1;i<=currentGame.getNoPlayers();i++)
         {
@@ -45,7 +43,7 @@ public class FinalScoreActivity extends AppCompatActivity {
             casetNume.setText(currentGame.getPlayersList().get(i-1).getName());
             casetScor.setText(String.valueOf(currentGame.getPlayersList().get(i-1).getScore()));
             casetNume.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
-            casetNume.setWidth(TypedValue.COMPLEX_UNIT_DIP*41);
+            casetNume.setWidth(TableLayout.LayoutParams.WRAP_CONTENT);
             casetScor.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
             casetScor.setGravity(Gravity.END);
             rand.addView(casetNume,myParams);
@@ -56,5 +54,14 @@ public class FinalScoreActivity extends AppCompatActivity {
     public void onClickEndGame(View view){
         Intent endGame = new Intent(this, MenuActivity.class);
         startActivity(endGame);
+    }
+
+    @Override
+    public void onBackPressed(){
+        Intent back=new Intent(this,InputResultsActivity.class);
+        Bundle passCurrentGame = new Bundle();
+        passCurrentGame.putSerializable("currentGame",currentGame);
+        back.putExtras(passCurrentGame);
+        startActivity(back);
     }
 }

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+
 public class BetsHandsActivity extends AppCompatActivity {
     private CurrentGame currentGame;
     private boolean isChecking = true;
@@ -26,12 +27,14 @@ public class BetsHandsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bets_hands);
         currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
         currentGame.setRound(currentGame.getRound()+1);
+        currentGame.setNeedRotate(true);
         Button placeBet= findViewById(R.id.setBet);
         placeBet.setEnabled(false);
         mFirstGroup =  findViewById(R.id.first_group);
         mSecondGroup =  findViewById(R.id.second_group);
         mThirdGroup =  findViewById(R.id.third_group);
         mFirstGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId != -1 && isChecking) {
@@ -79,8 +82,6 @@ public class BetsHandsActivity extends AppCompatActivity {
         showName.setText(currentGame.getPlayersList().get(0).getName());
     }
 
-
-
     public void onClickPlaceBet(View view) {
         isChecked();
         if(finishBet) {
@@ -99,31 +100,31 @@ public class BetsHandsActivity extends AppCompatActivity {
 
     public void isChecked(){
         if (mCheckedId == R.id.btn0) {
-            Toast.makeText(this, "0", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "0", Toast.LENGTH_SHORT).show();
             setPlayerBet(0);
         } else if (mCheckedId == R.id.btn1) {
-            Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
             setPlayerBet(1);
         } else if (mCheckedId == R.id.btn2) {
-            Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
             setPlayerBet(2);
         } else if (mCheckedId == R.id.btn3) {
-            Toast.makeText(this, "3", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "3", Toast.LENGTH_SHORT).show();
             setPlayerBet(3);
         } else if (mCheckedId == R.id.btn4) {
-            Toast.makeText(this, "4", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "4", Toast.LENGTH_SHORT).show();
             setPlayerBet(4);
         } else if (mCheckedId == R.id.btn5) {
-            Toast.makeText(this, "5", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "5", Toast.LENGTH_SHORT).show();
             setPlayerBet(5);
         } else if (mCheckedId == R.id.btn6) {
-            Toast.makeText(this, "6", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "6", Toast.LENGTH_SHORT).show();
             setPlayerBet(6);
         } else if (mCheckedId == R.id.btn7) {
-            Toast.makeText(this, "7", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "7", Toast.LENGTH_SHORT).show();
             setPlayerBet(7);
         } else if (mCheckedId == R.id.btn8) {
-            Toast.makeText(this, "8", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "8", Toast.LENGTH_SHORT).show();
             setPlayerBet(8);
         }
     }
@@ -170,6 +171,17 @@ public class BetsHandsActivity extends AppCompatActivity {
             crtButton.setEnabled(false);
             crtButton.setBackgroundResource(R.drawable.radio_disabled);
         }
+    }
+
+    @Override
+    public void onBackPressed(){
+        currentGame.setNeedRotate(false);
+        currentGame.setRound(currentGame.getRound()-1);
+        Intent back=new Intent(this,ScoreTableActivity.class);
+        Bundle passCurrentGame = new Bundle();
+        passCurrentGame.putSerializable("currentGame",currentGame);
+        back.putExtras(passCurrentGame);
+        startActivity(back);
     }
 
 }
