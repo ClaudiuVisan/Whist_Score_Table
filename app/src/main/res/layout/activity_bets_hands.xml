@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BetsHandsActivity">
+    tools:context=".BetsHandsActivity"
+    android:background="@drawable/background_color_bej">
 
     <TextView
         android:id="@+id/showBet"
@@ -196,6 +197,7 @@
     </RadioGroup>
 
     <Button
+        android:id="@+id/setBet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/third_group"

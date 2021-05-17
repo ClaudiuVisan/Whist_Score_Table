@@ -8,10 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.Spinner;
 import android.widget.Toast;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class AddPlayersActivity extends AppCompatActivity {
@@ -20,13 +17,14 @@ public class AddPlayersActivity extends AppCompatActivity {
     private boolean noPlayersModified = false;
     private ArrayList<Player> playersList = new ArrayList<>();
     LinearLayout addPlayersLayout = null;
+    boolean nameNotSet=false;
+    private CurrentGame currentGame = new CurrentGame();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_players);
-        Intent newGame = getIntent();
-        Button startGame= (Button) findViewById(R.id.startGame);
+        Button startGame= findViewById(R.id.startGame);
         startGame.setEnabled(false);
     }
 
@@ -55,25 +53,21 @@ public class AddPlayersActivity extends AppCompatActivity {
                 }
         }
         addPlayers();
-        Button startGame= (Button) findViewById(R.id.startGame);
+        Button startGame = findViewById(R.id.startGame);
         startGame.setEnabled(true);
     }
 
     public void onClickStartGame(View view){
+        boolean fromLoad=false;
         Intent startGame = new Intent(AddPlayersActivity.this, ScoreTableActivity.class);
-        Bundle passPlayersList = new Bundle();
-        for(int i=1;i<=noPlayers;i++)
+        startGame.putExtras(setGameStatus());
+        startGame.putExtra("fromLoad",fromLoad);
+        if(nameNotSet)
         {
-            Player newPlayer = new Player();
-            EditText caset = (EditText) findViewById(R.id.playerName+i);
-            newPlayer.setName(caset.getText().toString());
-            playersList.add(newPlayer);
-            passPlayersList.putSerializable("playerList",(Serializable) playersList);
-        }
-        startGame.putExtras(passPlayersList);
-        startGame.putExtra("noPlayers",noPlayers);
-        int round = 0, hands=8;
-        startActivity(startGame);
+            Toast.makeText(this, "Please enter players names", Toast.LENGTH_SHORT).show();
+        }else {
+            startActivity(startGame);
+       }
     }
 
     public void addPlayers(){
@@ -81,7 +75,7 @@ public class AddPlayersActivity extends AppCompatActivity {
         {
             for(int i=1;i<=6;i++)
             {
-                EditText removePlayerName = (EditText) findViewById(R.id.playerName+i);
+                EditText removePlayerName = findViewById(R.id.playerName+i);
                 addPlayersLayout.removeView(removePlayerName);
             }
         }
@@ -99,5 +93,41 @@ public class AddPlayersActivity extends AppCompatActivity {
             addPlayersLayout.addView(playerName, myParams);
         }
         noPlayersModified = true;
+    }
+
+    public void setPlayerNames(){
+        currentGame.getPlayersList().clear();
+        for(int i=1;i<=noPlayers;i++)
+        {
+            Player newPlayer = new Player();
+            EditText caset = findViewById(R.id.playerName+i);
+            newPlayer.setName(caset.getText().toString());
+            if(caset.getText().toString().trim().length() == 0)
+            {
+                nameNotSet=true;
+            }
+            else{
+                nameNotSet=false;
+            }
+            playersList.add(newPlayer);
+            currentGame.setPlayersList(playersList);
+        }
+    }
+
+    public Bundle setGameStatus(){
+        setPlayerNames();
+        Bundle passCurrentGame = new Bundle();
+        currentGame.setNoRounds(12+3*noPlayers);
+        currentGame.setNoPlayers(noPlayers);
+        //currentGame.createHands();
+
+        passCurrentGame.putSerializable("currentGame",currentGame);
+        return passCurrentGame;
+    }
+
+    @Override
+    public void onBackPressed(){
+        Intent back=new Intent(this,MenuActivity.class);
+        startActivity(back);
     }
 }

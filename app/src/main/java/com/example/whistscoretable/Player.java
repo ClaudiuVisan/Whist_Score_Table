@@ -1,9 +1,18 @@
 package com.example.whistscoretable;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 
+//@Entity
 public class Player implements Serializable {
-    private int score, bet, result;
+    //@PrimaryKey (autoGenerate = true)
+    private int playerId;
+    private int score;
+    private int bet;
+    private int result;
     private String name;
 
     public int getScore() {
@@ -40,8 +49,15 @@ public class Player implements Serializable {
 
     Player(){
         score=0;
-        name=" ";
+        name="TBD";
         bet=0;
     }
 
+    public int getPlayerId() {
+        return playerId;
+    }
+
+    public void setPlayerId(int playerId) {
+        this.playerId = playerId;
+    }
 }

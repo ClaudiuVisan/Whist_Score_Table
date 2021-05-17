@@ -6,34 +6,38 @@ import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import java.io.Serializable;
-import java.util.ArrayList;
+
 
 public class CheckBetsActivity extends AppCompatActivity {
 
-    private ArrayList<Player> playersList;
-    private TableLayout betTable;
-    private int noPlayers;
+    private CurrentGame currentGame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_bets);
-        playersList = (ArrayList<Player>) getIntent().getSerializableExtra("playerList");
-        noPlayers = (getIntent().getIntExtra("noPlayers",3));
-        createBetTable(noPlayers);
+        currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
+        createBetTable(currentGame.getNoPlayers());
     }
+
+     @Override
+   public void onBackPressed(){
+     currentGame.setRound(currentGame.getRound()-1);
+     currentGame.setBackPressed(false);
+     Intent back=new Intent(this,BetsHandsActivity.class);
+     Bundle passCurrentGame = new Bundle();
+     passCurrentGame.putSerializable("currentGame",currentGame);
+     back.putExtras(passCurrentGame);
+     startActivity(back);
+  }
 
     public void createBetTable(int noPlayers)
     {
-        betTable = (TableLayout) findViewById(R.id.betTable);
+        TableLayout betTable = findViewById(R.id.betTable);
         betTable.setVerticalGravity(Gravity.CENTER_VERTICAL);
-        betTable.setColumnStretchable(0,true);
-        betTable.setColumnStretchable(1,true);
         betTable.setVerticalGravity(Gravity.START);
         for(int i=1;i<=noPlayers;i++)
         {
@@ -42,12 +46,12 @@ public class CheckBetsActivity extends AppCompatActivity {
             rand.setLayoutParams(myParams);
             TextView casetNume = new TextView(this);
             TextView casetBet = new TextView(this);
-            casetNume.setText(playersList.get(i-1).getName());
-            casetBet.setText(String.valueOf(playersList.get(i-1).getBet()));
+            casetNume.setText(currentGame.getPlayersList().get(i-1).getName());
+            casetBet.setText(String.valueOf(currentGame.getPlayersList().get(i-1).getBet()));
             casetNume.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
-            casetNume.setWidth(TypedValue.COMPLEX_UNIT_DIP*720);
+            casetNume.setWidth(TableLayout.LayoutParams.WRAP_CONTENT);
             casetBet.setTextSize(TypedValue.COMPLEX_UNIT_SP,28);
-            casetBet.setGravity(Gravity.RIGHT);
+            casetBet.setGravity(Gravity.END);
             rand.addView(casetNume,myParams);
             rand.addView(casetBet,myParams);
             betTable.addView(rand,myParams);
@@ -56,10 +60,9 @@ public class CheckBetsActivity extends AppCompatActivity {
     public void onClickFinishCheck(View view)
     {
         Intent finishCheck = new Intent(this, InputResultsActivity.class);
-        Bundle passPlayersList = new Bundle();
-        passPlayersList.putSerializable("playerList",(Serializable) playersList);
-        finishCheck.putExtras(passPlayersList);
-        finishCheck.putExtra("noPlayers",noPlayers);
+        Bundle passCurrentGame = new Bundle();
+        passCurrentGame.putSerializable("currentGame",currentGame);
+        finishCheck.putExtras(passCurrentGame);
         startActivity(finishCheck);
     }
 }

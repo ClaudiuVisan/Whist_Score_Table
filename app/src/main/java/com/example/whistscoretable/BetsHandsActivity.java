@@ -1,33 +1,40 @@
 package com.example.whistscoretable;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+
 
 public class BetsHandsActivity extends AppCompatActivity {
-    private ArrayList<Player> playersList;
+    private CurrentGame currentGame;
     private boolean isChecking = true;
     private int mCheckedId = R.id.btn0;
-    private int noPlayers, cnt=0, round, hands;
+    private int cnt=0;
     private boolean finishBet=false;
+    private final int[] idList={R.id.btn0,R.id.btn1,R.id.btn2,R.id.btn3,R.id.btn4,R.id.btn5,R.id.btn6,R.id.btn7,R.id.btn8};
+    private RadioGroup mFirstGroup, mSecondGroup, mThirdGroup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bets_hands);
-        playersList = (ArrayList<Player>) getIntent().getSerializableExtra("playerList");
-        noPlayers = (getIntent().getIntExtra("noPlayers",3));
-        RadioGroup mFirstGroup = (RadioGroup) findViewById(R.id.first_group);
-        RadioGroup mSecondGroup = (RadioGroup) findViewById(R.id.second_group);
-        RadioGroup mThirdGroup = (RadioGroup) findViewById(R.id.third_group);
+        currentGame = (CurrentGame) getIntent().getSerializableExtra("currentGame");
+        currentGame.setRound(currentGame.getRound()+1);
+        currentGame.setNeedRotate(true);
+        Button placeBet= findViewById(R.id.setBet);
+        placeBet.setEnabled(false);
+        mFirstGroup =  findViewById(R.id.first_group);
+        mSecondGroup =  findViewById(R.id.second_group);
+        mThirdGroup =  findViewById(R.id.third_group);
         mFirstGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId != -1 && isChecking) {
@@ -37,6 +44,8 @@ public class BetsHandsActivity extends AppCompatActivity {
                     mCheckedId = checkedId;
                 }
                 isChecking = true;
+                Button placeBet= findViewById(R.id.setBet);
+                placeBet.setEnabled(true);
             }
         });
         mSecondGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -49,6 +58,8 @@ public class BetsHandsActivity extends AppCompatActivity {
                     mCheckedId = checkedId;
                 }
                 isChecking = true;
+                Button placeBet= findViewById(R.id.setBet);
+                placeBet.setEnabled(true);
             }
         });
         mThirdGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -61,66 +72,116 @@ public class BetsHandsActivity extends AppCompatActivity {
                     mCheckedId = checkedId;
                 }
                 isChecking = true;
+                Button placeBet=findViewById(R.id.setBet);
+                placeBet.setEnabled(true);
             }
         });
-        TextView showName = (TextView) findViewById(R.id.showName);
-        showName.setText(playersList.get(0).getName());
+
+        disableBets();
+        TextView showName = findViewById(R.id.showName);
+        showName.setText(currentGame.getPlayersList().get(0).getName());
     }
 
-
     public void onClickPlaceBet(View view) {
-            isChecked();
-            if(finishBet) {
-                Intent checkBets = new Intent(this, CheckBetsActivity.class);
-                Bundle passPlayersList = new Bundle();
-                passPlayersList.putSerializable("playerList",(Serializable) playersList);
-                checkBets.putExtras(passPlayersList);
-                checkBets.putExtra("noPlayers",noPlayers);
-                startActivity(checkBets);
-            }
+        isChecked();
+        if(finishBet) {
+            Intent checkBets = new Intent(this, CheckBetsActivity.class);
+            Bundle passCurrentGame = new Bundle();
+            passCurrentGame.putSerializable("currentGame",currentGame);
+            checkBets.putExtras(passCurrentGame);
+            startActivity(checkBets);
+        }
+        mFirstGroup.clearCheck();
+        mSecondGroup.clearCheck();
+        mThirdGroup.clearCheck();
+        Button placeBet= findViewById(R.id.setBet);
+        placeBet.setEnabled(false);
     }
 
     public void isChecked(){
         if (mCheckedId == R.id.btn0) {
-            Toast.makeText(this, "0", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "0", Toast.LENGTH_SHORT).show();
             setPlayerBet(0);
         } else if (mCheckedId == R.id.btn1) {
-            Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
             setPlayerBet(1);
         } else if (mCheckedId == R.id.btn2) {
-            Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
             setPlayerBet(2);
         } else if (mCheckedId == R.id.btn3) {
-            Toast.makeText(this, "3", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "3", Toast.LENGTH_SHORT).show();
             setPlayerBet(3);
         } else if (mCheckedId == R.id.btn4) {
-            Toast.makeText(this, "4", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "4", Toast.LENGTH_SHORT).show();
             setPlayerBet(4);
         } else if (mCheckedId == R.id.btn5) {
-            Toast.makeText(this, "5", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "5", Toast.LENGTH_SHORT).show();
             setPlayerBet(5);
         } else if (mCheckedId == R.id.btn6) {
-            Toast.makeText(this, "6", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "6", Toast.LENGTH_SHORT).show();
             setPlayerBet(6);
         } else if (mCheckedId == R.id.btn7) {
-            Toast.makeText(this, "7", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "7", Toast.LENGTH_SHORT).show();
             setPlayerBet(7);
         } else if (mCheckedId == R.id.btn8) {
-            Toast.makeText(this, "8", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "8", Toast.LENGTH_SHORT).show();
             setPlayerBet(8);
         }
     }
 
     public void setPlayerBet(int bet){
-        TextView showName = (TextView) findViewById(R.id.showName);
-        if(cnt<noPlayers-1)
+        TextView showName = findViewById(R.id.showName);
+        if(cnt<currentGame.getNoPlayers()-1)
         {
-            showName.setText(playersList.get(cnt+1).getName());
+            showName.setText(currentGame.getPlayersList().get(cnt+1).getName());
         }
-        playersList.get(cnt).setBet(bet);
+
+        currentGame.getPlayersList().get(cnt).setBet(bet);
+        if(cnt==currentGame.getNoPlayers()-2)
+        {
+            disableLastBet();
+        }
         cnt++;
-        if(cnt==noPlayers) {
+        if(cnt==currentGame.getNoPlayers()) {
             finishBet = true;
         }
     }
+
+    public void disableBets()
+    {
+
+        for(int i=currentGame.getHandsList()[currentGame.getRound()]+1;i<=8;i++)
+        {
+            RadioButton crtButton = findViewById(idList[i]);
+            crtButton.setEnabled(false);
+            crtButton.setBackgroundResource(R.drawable.radio_disabled);
+        }
+    }
+
+    public void disableLastBet()
+    {
+        int forbid=currentGame.getNoHands();
+        for(int i=0;i<currentGame.getNoPlayers()-1;i++)
+        {
+            forbid=forbid-currentGame.getPlayersList().get(i).getBet();
+        }
+        if(forbid>=0)
+        {
+            RadioButton crtButton = findViewById(idList[forbid]);
+            crtButton.setEnabled(false);
+            crtButton.setBackgroundResource(R.drawable.radio_disabled);
+        }
+    }
+
+    @Override
+    public void onBackPressed(){
+        currentGame.setNeedRotate(false);
+        currentGame.setRound(currentGame.getRound()-1);
+        Intent back=new Intent(this,ScoreTableActivity.class);
+        Bundle passCurrentGame = new Bundle();
+        passCurrentGame.putSerializable("currentGame",currentGame);
+        back.putExtras(passCurrentGame);
+        startActivity(back);
+    }
+
 }
