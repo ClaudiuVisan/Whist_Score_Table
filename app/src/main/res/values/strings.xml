@@ -14,7 +14,7 @@
     </string-array>
     <string name="scoreView">Players Score</string>
     <string name="placeBets">PLACE BETS</string>
-    <string name="placeBet">PLACE BET</string>
+    <string name="placeBet">BET</string>
     <string name="betView">Players Bets</string>
     <string name="playerName">Player</string>
     <string name="inputResult">NEXT</string>
