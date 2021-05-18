@@ -23,10 +23,14 @@ public class SaveGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 boolean onSave = true;
+                boolean exists = true;
+                if(currentGame.getName().equals("#!*#!*")){
+                    exists = false;
+                }
                 currentGame.setName(gameName.getText().toString());
                 //db.gameDao().update(currentGame);
                 //db.gameDao().insertAll(currentGame);
-                if(!currentGame.getName().equals("#!*#!*")){
+                if(exists){
                     db.gameDao().update(currentGame);
                 }
                 else {
