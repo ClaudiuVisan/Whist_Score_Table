@@ -1,4 +1,3 @@
 # Whist_Score_Table
-PPA Project
 
-Tabel de scor pentru varianta romaneasca a jocului de Whist
+An Android app for keeping the score for the romanian version of Whist card game.
